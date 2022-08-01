@@ -1,0 +1,22 @@
+.user {
+	display: grid;
+	grid-template-columns: 1fr 50px 130px;
+	gap: 20px;
+	align-items: center;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 15px;
+}
+.name {
+	text-transform: capitalize;
+}
+.role {
+	text-transform: uppercase;
+	justify-self: end;
+	color: royalblue;
+	border: 1px solid royalblue;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	font-weight: bold;
+}

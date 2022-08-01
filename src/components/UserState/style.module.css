@@ -1,0 +1,12 @@
+.state {
+	text-transform: capitalize;
+}
+.state {
+	font-weight: bold;
+}
+.noActive {
+	color: red;
+}
+.active {
+	color: green;
+}
