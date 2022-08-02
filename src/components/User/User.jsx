@@ -1,15 +1,11 @@
+import { useContext } from "react";
+import { UsersContext } from "../../contexts/UsersContext";
 import UserRole from "../UserRole/UserRole";
 import UserState from "../UserState/UserState";
 import css from "./style.module.css";
 
-export default function User({
-	id,
-	name,
-	state,
-	role,
-	activateUser,
-	deactivateUser
-}) {
+export default function User({ id, name, state, role }) {
+	const { activateUser, deactivateUser } = useContext(UsersContext);
 	const handleOnClickUserState = () => {
 		if (state === "activo") {
 			deactivateUser(id);

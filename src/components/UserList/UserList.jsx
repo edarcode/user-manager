@@ -1,3 +1,4 @@
+import { UsersContext } from "../../contexts/UsersContext";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
 import Title from "../Title/Title";
@@ -32,12 +33,9 @@ export default function UserList({ initUsers }) {
 				sortBy={sortBy}
 				setSortBy={setSortBy}
 			/>
-
-			<Users
-				users={filteredUsers}
-				activateUser={activateUser}
-				deactivateUser={deactivateUser}
-			/>
+			<UsersContext.Provider value={{ activateUser, deactivateUser }}>
+				<Users users={filteredUsers} />
+			</UsersContext.Provider>
 		</div>
 	);
 }
