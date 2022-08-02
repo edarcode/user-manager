@@ -1,23 +1,21 @@
-import { useState } from "react";
 import UserRole from "../UserRole/UserRole";
 import UserState from "../UserState/UserState";
 import css from "./style.module.css";
 
-export default function User({ name, state, role }) {
-	const [userState, setUserState] = useState(state);
+export default function User({ id, name, state, role, setUserState }) {
 	const handleOnClickUserState = () => {
-		setUserState(state => {
-			if (state === "activo") return "inactivo";
-			return "activo";
-		});
+		if (state === "activo") {
+			return setUserState(id, "inactivo");
+		}
+		setUserState(id, "activo");
 	};
 	return (
 		<div className={css.user}>
 			<span className={css.name}>{name}</span>
-			<UserState state={userState} />
+			<UserState state={state} />
 			<UserRole role={role} />
 			<button className={css.btn} onClick={handleOnClickUserState}>
-				{userState === "activo" ? "Desactivar" : "Activar"}
+				{state === "activo" ? "Desactivar" : "Activar"}
 			</button>
 		</div>
 	);

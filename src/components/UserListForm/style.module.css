@@ -1,0 +1,10 @@
+.form {
+	display: flex;
+	gap: 10px;
+	justify-content: space-around;
+	align-items: center;
+}
+.checkActive {
+	display: flex;
+	gap: 5px;
+}
