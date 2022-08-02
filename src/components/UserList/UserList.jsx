@@ -6,7 +6,7 @@ import Users from "../Users/Users";
 import css from "./style.module.css";
 
 export default function UserList({ initUsers }) {
-	const { users, setUserState } = useUsers(initUsers);
+	const { users, activateUser, deactivateUser } = useUsers(initUsers);
 	const {
 		searchUsers,
 		onlyActive,
@@ -33,7 +33,11 @@ export default function UserList({ initUsers }) {
 				setSortBy={setSortBy}
 			/>
 
-			<Users users={filteredUsers} setUserState={setUserState} />
+			<Users
+				users={filteredUsers}
+				activateUser={activateUser}
+				deactivateUser={deactivateUser}
+			/>
 		</div>
 	);
 }

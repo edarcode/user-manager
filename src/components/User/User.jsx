@@ -2,12 +2,20 @@ import UserRole from "../UserRole/UserRole";
 import UserState from "../UserState/UserState";
 import css from "./style.module.css";
 
-export default function User({ id, name, state, role, setUserState }) {
+export default function User({
+	id,
+	name,
+	state,
+	role,
+	activateUser,
+	deactivateUser
+}) {
 	const handleOnClickUserState = () => {
 		if (state === "activo") {
-			return setUserState(id, "inactivo");
+			deactivateUser(id);
+		} else if (state === "inactivo") {
+			activateUser(id);
 		}
-		setUserState(id, "activo");
 	};
 	return (
 		<div className={css.user}>
