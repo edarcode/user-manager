@@ -1,0 +1,15 @@
+.role {
+	text-transform: uppercase;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	border: 1px solid aliceblue;
+	text-align: center;
+}
+.student {
+	border: 1px solid yellowgreen;
+}
+.teacher {
+	border: 1px solid royalblue;
+}
