@@ -25,7 +25,7 @@ export default function UserList({ initUsers }) {
 
 	return (
 		<div className={css.usersList}>
-			<Title>Lista de Usuarios</Title>
+			<Title>Listado de usuarios</Title>
 
 			<UserListForm
 				searchUsers={searchUsers}

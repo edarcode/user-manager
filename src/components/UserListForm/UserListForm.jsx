@@ -25,25 +25,31 @@ export default function UserListForm({
 	};
 	return (
 		<form className={css.form}>
-			<InputSearch
-				placeholder="Buscar..."
-				type="text"
-				value={searchUsers}
-				onChange={handleOnChangeSearchUsers}
-			/>
+			<div className={css.wrapperOne}>
+				<InputSearch
+					className={css.search}
+					placeholder="Buscar..."
+					type="text"
+					value={searchUsers}
+					onChange={handleOnChangeSearchUsers}
+				/>
+				<Select
+					className={css.select}
+					value={sortBy}
+					onChange={handleOnChangeSortBy}
+				>
+					<option value="default">Defecto</option>
+					<option value="name">Nombre</option>
+					{!onlyActive && <option value="active">Activo</option>}
+					<option value="role">Rol</option>
+				</Select>
+			</div>
 			<InputCheckbox
 				type="checkbox"
 				checked={onlyActive}
 				onChange={handleOnChangeIsActive}
 				text="Solo activos"
 			/>
-
-			<Select value={sortBy} onChange={handleOnChangeSortBy}>
-				<option value="default">Defecto</option>
-				<option value="name">Nombre</option>
-				{!onlyActive && <option value="active">Activo</option>}
-				<option value="role">Rol</option>
-			</Select>
 		</form>
 	);
 }

@@ -1,6 +1,18 @@
 .form {
-	display: flex;
-	gap: 10px;
-	justify-content: space-around;
+	display: grid;
+	gap: 20px;
+}
+.wrapperOne {
+	display: grid;
+	grid-auto-flow: column;
+	justify-items: start;
 	align-items: center;
+	gap: 15px;
+	grid-template-columns: 70% 1fr;
+}
+.select {
+	justify-self: end;
+}
+.search {
+	max-width: 280px;
 }
