@@ -3,3 +3,6 @@
 	gap: 50px;
 	width: 750px;
 }
+.perPage {
+	justify-self: start;
+}

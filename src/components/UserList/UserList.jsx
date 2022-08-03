@@ -4,6 +4,7 @@ import { useUsers } from "../../hooks/useUsers";
 import Title from "../Title/Title";
 import UserListForm from "../UserListForm/UserListForm";
 import Users from "../Users/Users";
+import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
 
 export default function UserList({ initUsers }) {
@@ -15,7 +16,7 @@ export default function UserList({ initUsers }) {
 		setOnlyActive,
 		setSortBy
 	} = useFilters();
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(0);
 	const [usersPerPage, setUsersPerPage] = useState(2);
 	const { users } = useUsers(initUsers, {
 		onlyActive,
@@ -39,6 +40,11 @@ export default function UserList({ initUsers }) {
 			/>
 
 			<Users users={users} />
+			<UsersPerPage
+				className={css.perPage}
+				usersPerPage={usersPerPage}
+				setUsersPerPage={setUsersPerPage}
+			/>
 		</div>
 	);
 }
