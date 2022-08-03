@@ -9,9 +9,7 @@
 	border-radius: 15px;
 	padding: 15px;
 }
-.name {
-	text-transform: capitalize;
-}
+
 .btn {
 	color: black;
 	font-weight: bold;
