@@ -1,3 +1,4 @@
+import { optionsSort } from "../../constants/optionsSort";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
 import { sortByActive } from "../../utils/sortByActive";
@@ -54,11 +55,12 @@ const filterUsersActive = (users, onlyActive) => {
 	return filteredUsers;
 };
 const sortUsers = (users, sortBy) => {
-	if (!users.length || !sortBy || sortBy === "default") return [...users];
+	if (!users.length || !sortBy || sortBy === optionsSort.default)
+		return [...users];
 	const orderCases = {
-		name: () => sortByName(users),
-		active: () => sortByActive(users),
-		role: () => sortByRole(users)
+		[optionsSort.name]: () => sortByName(users),
+		[optionsSort.active]: () => sortByActive(users),
+		[optionsSort.role]: () => sortByRole(users)
 	};
 	return orderCases[sortBy]() || [...users];
 };

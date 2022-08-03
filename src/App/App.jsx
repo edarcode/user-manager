@@ -1,4 +1,5 @@
 import UserList from "../components/UserList/UserList";
+import { allRoles } from "../constants/allRoles";
 import css from "./style.module.css";
 
 const users = [
@@ -6,37 +7,25 @@ const users = [
 		username: "edarcode",
 		name: "Edwin Ortiz",
 		active: true,
-		role: "alumno"
+		role: allRoles.student
 	},
 	{
 		username: "pablo",
 		name: "Pablo Castellanos",
 		active: true,
-		role: "profesor"
+		role: allRoles.teacher
 	},
 	{
 		username: "jose",
 		name: "Jose Miguel Fernández",
 		active: false,
-		role: "profesor"
+		role: allRoles.teacher
 	},
 	{
 		username: "javier",
 		name: "Javier López",
 		active: true,
-		role: "alumno"
-	},
-	{
-		username: "pepe",
-		name: "Pepe",
-		active: true,
-		role: "otro"
-	},
-	{
-		username: "pedro",
-		name: "Pedro",
-		active: false,
-		role: "otro"
+		role: allRoles.other
 	}
 ];
 

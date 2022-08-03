@@ -1,3 +1,4 @@
+import { optionsSort } from "../../constants/optionsSort";
 import InputCheckbox from "../form/InputCheckbox/InputCheckbox";
 import InputSearch from "../form/InputSearch/InputSearch";
 import Select from "../form/Select/Select";
@@ -38,10 +39,10 @@ export default function UserListForm({
 					value={sortBy}
 					onChange={handleOnChangeSortBy}
 				>
-					<option value="default">Defecto</option>
-					<option value="name">Nombre</option>
-					{!onlyActive && <option value="active">Activo</option>}
-					<option value="role">Rol</option>
+					<option value={optionsSort.default}>Defecto</option>
+					<option value={optionsSort.name}>Nombre</option>
+					{!onlyActive && <option value={optionsSort.active}>Activo</option>}
+					<option value={optionsSort.role}>Rol</option>
 				</Select>
 			</div>
 			<InputCheckbox
