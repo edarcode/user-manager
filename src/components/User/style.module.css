@@ -1,21 +1,11 @@
 .user {
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 190px;
+	grid-template-columns: 1fr 20% 20%;
 	justify-items: start;
 	align-items: center;
 	gap: 20px;
-	border: 1px solid black;
-	border-radius: 15px;
-	padding: 15px;
-}
-
-.btn {
-	color: black;
-	font-weight: bold;
-	border-radius: 3px;
-	border: none;
-	padding: 5px;
-	min-width: 90px;
-	font-size: 1.4rem;
+	border-radius: var(--border-md);
+	padding: 16px;
+	box-shadow: var(--shadow-md);
 }
