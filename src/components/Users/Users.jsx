@@ -5,7 +5,7 @@ export default function Users({ users }) {
 	return (
 		<>
 			{users.map(user => (
-				<User key={user.id} {...user} />
+				<User key={user.username} {...user} />
 			))}
 		</>
 	);

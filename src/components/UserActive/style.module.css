@@ -1,0 +1,7 @@
+.active {
+	text-transform: capitalize;
+	color: green;
+}
+.noActive {
+	color: red;
+}

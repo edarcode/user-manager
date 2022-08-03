@@ -1,4 +1,3 @@
-import { UsersContext } from "../../contexts/UsersContext";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
 import Title from "../Title/Title";
@@ -7,7 +6,7 @@ import Users from "../Users/Users";
 import css from "./style.module.css";
 
 export default function UserList({ initUsers }) {
-	const { users, activateUser, deactivateUser } = useUsers(initUsers);
+	const { users } = useUsers(initUsers);
 	const {
 		searchUsers,
 		onlyActive,
@@ -33,9 +32,8 @@ export default function UserList({ initUsers }) {
 				sortBy={sortBy}
 				setSortBy={setSortBy}
 			/>
-			<UsersContext.Provider value={{ activateUser, deactivateUser }}>
-				<Users users={filteredUsers} />
-			</UsersContext.Provider>
+
+			<Users users={filteredUsers} />
 		</div>
 	);
 }
@@ -49,7 +47,7 @@ const filterUsersByName = (users, name) => {
 };
 const filterUsersActive = (users, onlyActive) => {
 	if (!users.length || !onlyActive) return [...users];
-	const filteredUsers = users.filter(({ state }) => state === "activo");
+	const filteredUsers = users.filter(({ active }) => active === true);
 	return filteredUsers;
 };
 const sortUsers = (users, sortBy) => {

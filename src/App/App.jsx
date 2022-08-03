@@ -3,27 +3,27 @@ import css from "./style.module.css";
 
 const users = [
 	{
-		id: 1,
-		name: "edarcode",
-		state: "activo",
+		username: "edarcode",
+		name: "Edwin Ortiz",
+		active: true,
 		role: "estudiante"
 	},
 	{
-		id: 2,
-		name: "pablo",
-		state: "activo",
+		username: "pablo",
+		name: "Pablo Castellanos",
+		active: true,
 		role: "profesor"
 	},
 	{
-		id: 3,
-		name: "jose",
-		state: "inactivo",
+		username: "jose",
+		name: "Jose Miguel Fernández",
+		active: false,
 		role: "profesor"
 	},
 	{
-		id: 4,
-		name: "javier",
-		state: "activo",
+		username: "javier",
+		name: "Javier López",
+		active: true,
 		role: "estudiante"
 	}
 ];

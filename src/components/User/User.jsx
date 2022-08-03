@@ -1,26 +1,13 @@
-import { useContext } from "react";
-import { UsersContext } from "../../contexts/UsersContext";
+import UserActive from "../UserActive/UserActive";
 import UserRole from "../UserRole/UserRole";
-import UserState from "../UserState/UserState";
 import css from "./style.module.css";
 
-export default function User({ id, name, state, role }) {
-	const { activateUser, deactivateUser } = useContext(UsersContext);
-	const handleOnClickUserState = () => {
-		if (state === "activo") {
-			deactivateUser(id);
-		} else if (state === "inactivo") {
-			activateUser(id);
-		}
-	};
+export default function User({ name, active, role }) {
 	return (
 		<div className={css.user}>
 			<span className={css.name}>{name}</span>
-			<UserState state={state} />
+			<UserActive active={active} />
 			<UserRole role={role} />
-			<button className={css.btn} onClick={handleOnClickUserState}>
-				{state === "activo" ? "Desactivar" : "Activar"}
-			</button>
 		</div>
 	);
 }
