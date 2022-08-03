@@ -3,8 +3,7 @@ import css from "./style.module.css";
 export default function UserRole({ role }) {
 	const className = {
 		profesor: `${css.role} ${css.teacher}`,
-		estudiante: `${css.role} ${css.student}`,
-		default: css.role
+		estudiante: `${css.role} ${css.student}`
 	};
-	return <span className={className[role] || className.default}>{role}</span>;
+	return <span className={className[role] || css.role}>{role}</span>;
 }
