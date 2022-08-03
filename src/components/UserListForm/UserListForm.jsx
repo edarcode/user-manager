@@ -1,3 +1,4 @@
+import InputSearch from "../form/InputSearch/InputSearch";
 import css from "./style.module.css";
 
 export default function UserListForm({
@@ -22,7 +23,8 @@ export default function UserListForm({
 	};
 	return (
 		<form className={css.form}>
-			<input
+			<InputSearch
+				placeholder="Buscar..."
 				type="text"
 				value={searchUsers}
 				onChange={handleOnChangeSearchUsers}

@@ -3,7 +3,7 @@
 	text-transform: uppercase;
 	font-size: var(--text-sm);
 	padding: 4px 8px;
-	border-radius: var(--border-sm);
+	border-radius: var(--radius-sm);
 	background-color: var(--color-lightgray);
 }
 .student {
