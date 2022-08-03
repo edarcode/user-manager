@@ -1,5 +1,8 @@
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
+import { sortByActive } from "../../utils/sortByActive";
+import { sortByName } from "../../utils/sortByname";
+import { sortByRole } from "../../utils/sortByRole";
 import Title from "../Title/Title";
 import UserListForm from "../UserListForm/UserListForm";
 import Users from "../Users/Users";
@@ -41,7 +44,7 @@ const filterUsersByName = (users, name) => {
 	if (!users.length || !name) return [...users];
 	const lowerCaseName = name.toLowerCase();
 	const filteredUsers = users.filter(({ name }) =>
-		name.toLowerCase().startsWith(lowerCaseName)
+		name.toLowerCase().includes(lowerCaseName)
 	);
 	return filteredUsers;
 };
@@ -52,10 +55,10 @@ const filterUsersActive = (users, onlyActive) => {
 };
 const sortUsers = (users, sortBy) => {
 	if (!users.length || !sortBy || sortBy === "default") return [...users];
-	const sortedUsers = [...users].sort((a, b) => {
-		if (a[sortBy] > b[sortBy]) return 1;
-		if (a[sortBy] < b[sortBy]) return -1;
-		return 0;
-	});
-	return sortedUsers;
+	const orderCases = {
+		name: () => sortByName(users),
+		active: () => sortByActive(users),
+		role: () => sortByRole(users)
+	};
+	return orderCases[sortBy]() || [...users];
 };

@@ -5,8 +5,8 @@ const users = [
 	{
 		username: "edarcode",
 		name: "Edwin Ortiz",
-		active: true,
-		role: "estudiante"
+		active: false,
+		role: "alumno"
 	},
 	{
 		username: "pablo",
@@ -24,7 +24,19 @@ const users = [
 		username: "javier",
 		name: "Javier López",
 		active: true,
-		role: "estudiante"
+		role: "alumno"
+	},
+	{
+		username: "pepe",
+		name: "Pepe",
+		active: false,
+		role: "otro"
+	},
+	{
+		username: "pedro",
+		name: "Pedro",
+		active: false,
+		role: "otro"
 	}
 ];
 
