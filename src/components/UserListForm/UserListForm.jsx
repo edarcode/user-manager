@@ -39,7 +39,7 @@ export default function UserListForm({
 			<select value={sortBy} onChange={handleOnChangeSortBy}>
 				<option value="default">Defecto</option>
 				<option value="name">Nombre</option>
-				<option value="active">Activo</option>
+				{!onlyActive && <option value="active">Activo</option>}
 				<option value="role">Rol</option>
 			</select>
 		</form>

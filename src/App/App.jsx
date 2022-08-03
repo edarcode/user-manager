@@ -5,7 +5,7 @@ const users = [
 	{
 		username: "edarcode",
 		name: "Edwin Ortiz",
-		active: false,
+		active: true,
 		role: "alumno"
 	},
 	{
@@ -29,7 +29,7 @@ const users = [
 	{
 		username: "pepe",
 		name: "Pepe",
-		active: false,
+		active: true,
 		role: "otro"
 	},
 	{

@@ -10,7 +10,11 @@ export const useFilters = () => {
 		setFilters({ ...filters, searchUsers: newSearchUsers });
 	};
 	const setOnlyActive = newOnlyActive => {
-		setFilters({ ...filters, onlyActive: newOnlyActive });
+		if (newOnlyActive) {
+			setFilters({ ...filters, onlyActive: newOnlyActive, sortBy: "default" });
+		} else {
+			setFilters({ ...filters, onlyActive: newOnlyActive });
+		}
 	};
 	const setSortBy = newSortBy => {
 		setFilters({ ...filters, sortBy: newSortBy });
