@@ -1,7 +1,15 @@
 .active {
 	text-transform: capitalize;
-	color: green;
+	color: var(--color-green);
+	font-size: var(--text-sm);
+	display: flex;
+	gap: 8px;
+	align-items: center;
 }
 .noActive {
-	color: red;
+	color: var(--color-red);
+}
+.icon {
+	width: 1.6rem;
+	height: 1.6rem;
 }
