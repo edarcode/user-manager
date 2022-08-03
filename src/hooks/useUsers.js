@@ -13,6 +13,7 @@ export const useUsers = (
 	filteredUsers = filterUsersActive(filteredUsers, onlyActive);
 	filteredUsers = sortUsers(filteredUsers, sortBy);
 	const paginatedUsers = paginateUsers(filteredUsers, page, usersPerPage);
+	const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
-	return { users: paginatedUsers };
+	return { users: paginatedUsers, totalPages };
 };

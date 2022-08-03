@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { kindButtonIcon } from "../../constants/kingButtonIcon";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
-import ButtonIcon from "../ButtonIcon/ButtonIcon";
-import Loupe from "../icons/Loupe";
+import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
 import UserListForm from "../UserListForm/UserListForm";
 import Users from "../Users/Users";
@@ -20,9 +18,8 @@ export default function UserList({ initUsers }) {
 		setSortBy
 	} = useFilters();
 	const [page, setPage] = useState(0);
-	console.log(setPage); // ***************************************
 	const [usersPerPage, setUsersPerPage] = useState(2);
-	const { users } = useUsers(initUsers, {
+	const { users, totalPages } = useUsers(initUsers, {
 		onlyActive,
 		searchUsers,
 		sortBy,
@@ -49,7 +46,7 @@ export default function UserList({ initUsers }) {
 				usersPerPage={usersPerPage}
 				setUsersPerPage={setUsersPerPage}
 			/>
-			<ButtonIcon icon={Loupe} kind={kindButtonIcon.blackFill} />
+			<PageSelector page={page} setPage={setPage} totalPages={totalPages} />
 		</div>
 	);
 }
