@@ -1,5 +1,6 @@
 import InputCheckbox from "../form/InputCheckbox/InputCheckbox";
 import InputSearch from "../form/InputSearch/InputSearch";
+import Select from "../form/Select/Select";
 import css from "./style.module.css";
 
 export default function UserListForm({
@@ -37,12 +38,12 @@ export default function UserListForm({
 				text="Solo activos"
 			/>
 
-			<select value={sortBy} onChange={handleOnChangeSortBy}>
+			<Select value={sortBy} onChange={handleOnChangeSortBy}>
 				<option value="default">Defecto</option>
 				<option value="name">Nombre</option>
 				{!onlyActive && <option value="active">Activo</option>}
 				<option value="role">Rol</option>
-			</select>
+			</Select>
 		</form>
 	);
 }

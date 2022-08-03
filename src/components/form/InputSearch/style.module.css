@@ -9,6 +9,7 @@
 	left: 16px;
 	transform: translateY(-50%);
 	color: var(--color-lightgray);
+	pointer-events: none;
 }
 .input {
 	padding: 8px 16px;

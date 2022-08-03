@@ -1,0 +1,26 @@
+.wrapper {
+	position: relative;
+}
+.select {
+	height: 40px;
+	padding: 8px 110px 8px 16px;
+	appearance: none;
+	border: var(--border-sm);
+	border: none;
+	outline: transparent;
+	box-shadow: var(--shadow-sm);
+	background-color: var(--color-white);
+	border-radius: var(--radius-sm);
+}
+.select:focus {
+	box-shadow: var(--shadow-md);
+}
+.arrow {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
