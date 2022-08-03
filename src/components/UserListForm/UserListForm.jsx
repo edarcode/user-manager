@@ -1,3 +1,4 @@
+import InputCheckbox from "../form/InputCheckbox/InputCheckbox";
 import InputSearch from "../form/InputSearch/InputSearch";
 import css from "./style.module.css";
 
@@ -29,14 +30,12 @@ export default function UserListForm({
 				value={searchUsers}
 				onChange={handleOnChangeSearchUsers}
 			/>
-			<label className={css.checkActive}>
-				<input
-					type="checkbox"
-					checked={onlyActive}
-					onChange={handleOnChangeIsActive}
-				/>
-				<span>Activos</span>
-			</label>
+			<InputCheckbox
+				type="checkbox"
+				checked={onlyActive}
+				onChange={handleOnChangeIsActive}
+				text="Solo activos"
+			/>
 
 			<select value={sortBy} onChange={handleOnChangeSortBy}>
 				<option value="default">Defecto</option>

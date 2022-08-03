@@ -1,0 +1,28 @@
+.label {
+	display: flex;
+	gap: 5px;
+	position: relative;
+	align-items: center;
+}
+.check {
+	opacity: 0;
+	position: absolute;
+}
+.check:not(:checked) + .fakeCheck > .svgCheck {
+	display: none;
+}
+.check:focus + .fakeCheck {
+	box-shadow: var(--shadow-md);
+}
+.fakeCheck {
+	width: 32px;
+	height: 30px;
+	box-shadow: var(--shadow-sm);
+	border-radius: var(--radius-sm);
+	display: grid;
+	place-items: center;
+}
+.svgCheck {
+	width: 24px;
+	height: 24px;
+}
