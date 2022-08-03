@@ -1,3 +1,9 @@
+.usersPerPage {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 15px;
+	place-items: center;
+}
 .select select {
-	padding-right: calc(110px / 2);
+	padding: 8px 50px 8px 16px;
 }

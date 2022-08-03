@@ -41,12 +41,14 @@ export default function UserList({ initUsers }) {
 			/>
 
 			<Users users={users} />
-			<UsersPerPage
-				className={css.perPage}
-				usersPerPage={usersPerPage}
-				setUsersPerPage={setUsersPerPage}
-			/>
-			<PageSelector page={page} setPage={setPage} totalPages={totalPages} />
+			<div className={css.wrapperOne}>
+				<UsersPerPage
+					className={css.perPage}
+					usersPerPage={usersPerPage}
+					setUsersPerPage={setUsersPerPage}
+				/>
+				<PageSelector page={page} setPage={setPage} totalPages={totalPages} />
+			</div>
 		</div>
 	);
 }

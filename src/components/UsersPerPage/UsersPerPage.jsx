@@ -11,14 +11,17 @@ export default function UsersPerPage({
 		setUsersPerPage(usersPerPage);
 	};
 	return (
-		<Select
-			value={usersPerPage}
-			onChange={handleOnChange}
-			className={`${css.select} ${className || ""}`}
-		>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-		</Select>
+		<div className={`${css.usersPerPage} ${className || ""}`}>
+			<Select
+				value={usersPerPage}
+				onChange={handleOnChange}
+				className={css.select}
+			>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+			</Select>
+			<span>Elementos por página</span>
+		</div>
 	);
 }
