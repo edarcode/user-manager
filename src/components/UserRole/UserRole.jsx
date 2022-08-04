@@ -2,9 +2,20 @@ import { allRoles } from "../../constants/allRoles";
 import css from "./style.module.css";
 
 export default function UserRole({ role }) {
-	const className = {
-		[allRoles.teacher]: `${css.role} ${css.teacher}`,
-		[allRoles.student]: `${css.role} ${css.student}`
+	const roles = {
+		[allRoles.teacher]: {
+			className: `${css.role} ${css.teacher}`,
+			text: "Profesor"
+		},
+		[allRoles.student]: {
+			className: `${css.role} ${css.student}`,
+			text: "Alumno"
+		}
 	};
-	return <span className={className[role] || css.role}>{role}</span>;
+
+	return (
+		<span className={roles[role]?.className || css.role}>
+			{roles[role]?.text || "Otro"}
+		</span>
+	);
 }

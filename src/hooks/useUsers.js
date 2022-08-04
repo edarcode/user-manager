@@ -1,28 +1,38 @@
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../utils/fetchUsers";
-import { filterUsersActive } from "../utils/filterUsersActive";
-import { filterUsersByName } from "../utils/filterUsersByName";
-import { paginateUsers } from "../utils/paginateUsers";
-import { sortUsers } from "../utils/sortUsers";
+import { getUsersToDisplay } from "../utils/getUsersToDisplay";
 
-export const useUsers = ({
-	searchUsers,
-	onlyActive,
-	sortBy,
-	page,
-	usersPerPage
-}) => {
-	const [users, setUsers] = useState([]);
+export const useUsers = params => {
+	const [users, setUsers] = useState({
+		data: [],
+		err: false,
+		loading: true
+	});
 
 	useEffect(() => {
-		fetchUsers().then(users => setUsers(users));
+		setLoading(setUsers, true);
+		fetchUsers()
+			.then(users => setData(users, setUsers))
+			.catch(() => setErr(setUsers, true))
+			.finally(() => setLoading(setUsers, false));
 	}, []);
 
-	let filteredUsers = filterUsersByName(users, searchUsers);
-	filteredUsers = filterUsersActive(filteredUsers, onlyActive);
-	filteredUsers = sortUsers(filteredUsers, sortBy);
-	const paginatedUsers = paginateUsers(filteredUsers, page, usersPerPage);
-	const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+	const { usersToDisplay, totalPages } = getUsersToDisplay(users.data, params);
 
-	return { users: paginatedUsers, totalPages };
+	return {
+		users: usersToDisplay,
+		totalPages,
+		err: users.err,
+		loading: users.loading
+	};
+};
+
+const setData = (newData, setUsers) => {
+	setUsers(users => ({ ...users, data: newData }));
+};
+const setErr = (setUsers, newErr) => {
+	setUsers(users => ({ ...users, err: newErr }));
+};
+const setLoading = (setUsers, newLoading) => {
+	setUsers(users => ({ ...users, loading: newLoading }));
 };

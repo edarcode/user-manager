@@ -21,7 +21,7 @@ export default function UserList() {
 		setUsersPerPage
 	} = useFilters();
 
-	const { users, totalPages } = useUsers({
+	const { users, totalPages, err, loading } = useUsers({
 		onlyActive,
 		searchUsers,
 		sortBy,
@@ -42,7 +42,7 @@ export default function UserList() {
 				setSortBy={setSortBy}
 			/>
 
-			<Users users={users} />
+			<Users users={users} err={err} loading={loading} />
 			<div className={css.wrapperOne}>
 				<UsersPerPage
 					className={css.perPage}
