@@ -1,0 +1,30 @@
+.btn {
+	justify-self: center;
+	cursor: pointer;
+	line-height: 24px;
+	min-height: 40px;
+	padding: 8px 16px;
+	background-color: var(--color-black);
+	color: var(--color-white);
+	border: 1px solid transparent;
+	border-radius: var(--radius-sm);
+	box-shadow: var(--shadow-sm);
+}
+.btn:focus {
+	box-shadow: var(--shadow-md);
+}
+.btn:disabled {
+	cursor: default;
+}
+.white {
+	border: 1px solid var(--color-black);
+	color: var(--color-black);
+}
+.gray {
+	border: 1px solid var(--color-lightgray);
+	color: var(--color-lightgray);
+}
+.white,
+.gray {
+	background-color: transparent;
+}

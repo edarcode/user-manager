@@ -43,6 +43,7 @@ export default function UserList() {
 			/>
 
 			<Users users={users} err={err} loading={loading} />
+
 			<div className={css.wrapperOne}>
 				<UsersPerPage
 					className={css.perPage}

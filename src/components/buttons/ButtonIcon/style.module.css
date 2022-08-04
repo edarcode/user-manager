@@ -11,6 +11,9 @@
 	background-color: transparent;
 	color: var(--color-black);
 }
+.btn:disabled {
+	cursor: default;
+}
 .icon {
 	width: 20px;
 	height: 20px;
