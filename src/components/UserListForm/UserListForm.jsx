@@ -1,4 +1,5 @@
 import { optionsSort } from "../../constants/optionsSort";
+import Button from "../buttons/Button/Button";
 import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
 import InputSearch from "../forms/InputSearch/InputSearch";
 import Select from "../forms/Select/Select";
@@ -10,7 +11,8 @@ export default function UserListForm({
 	onlyActive,
 	setOnlyActive,
 	sortBy,
-	setSortBy
+	setSortBy,
+	setFormCreate
 }) {
 	const handleOnChangeSearchUsers = e => {
 		const user = e.target.value;
@@ -24,6 +26,11 @@ export default function UserListForm({
 		const sortBy = e.target.value;
 		setSortBy(sortBy);
 	};
+
+	const handleOnClickCreateUser = () => {
+		setFormCreate();
+	};
+
 	return (
 		<form className={css.form}>
 			<div className={css.wrapperOne}>
@@ -45,12 +52,21 @@ export default function UserListForm({
 					<option value={optionsSort.role}>Rol</option>
 				</Select>
 			</div>
-			<InputCheckbox
-				type="checkbox"
-				checked={onlyActive}
-				onChange={handleOnChangeIsActive}
-				text="Solo activos"
-			/>
+			<div className={css.wrapperTwo}>
+				<InputCheckbox
+					type="checkbox"
+					checked={onlyActive}
+					onChange={handleOnChangeIsActive}
+					text="Solo activos"
+				/>
+				<Button
+					type="button"
+					className={css.btnCreate}
+					onClick={handleOnClickCreateUser}
+				>
+					Añadir usuario
+				</Button>
+			</div>
 		</form>
 	);
 }

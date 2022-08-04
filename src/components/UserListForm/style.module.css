@@ -3,13 +3,17 @@
 	justify-items: start;
 	gap: 20px;
 }
-.wrapperOne {
+.wrapperOne,
+.wrapperTwo {
 	display: grid;
 	grid-auto-flow: column;
+	justify-items: start;
 	gap: 15px;
 	width: 100%;
 }
-.select {
+
+.select,
+.btnCreate {
 	justify-self: end;
 }
 .search {

@@ -1,4 +1,6 @@
+import { formTypes } from "../../constants/formTypes";
 import { useFilters } from "../../hooks/useFilters";
+import { useForm } from "../../hooks/useForm";
 import { useUsers } from "../../hooks/useUsers";
 
 import PageSelector from "../PageSelector/PageSelector";
@@ -29,19 +31,25 @@ export default function UserList() {
 		page,
 		usersPerPage
 	});
+	const { formType, setFormCreate } = useForm();
 
 	return (
 		<div className={css.usersList}>
 			<Title>Listado de usuarios</Title>
 
-			<UserListForm
-				searchUsers={searchUsers}
-				setSearchUsers={setSearchUsers}
-				onlyActive={onlyActive}
-				setOnlyActive={setOnlyActive}
-				sortBy={sortBy}
-				setSortBy={setSortBy}
-			/>
+			{formType === formTypes.filter && (
+				<UserListForm
+					searchUsers={searchUsers}
+					setSearchUsers={setSearchUsers}
+					onlyActive={onlyActive}
+					setOnlyActive={setOnlyActive}
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+					setFormCreate={setFormCreate}
+				/>
+			)}
+
+			{formType === formTypes.create && <p>Formulario de creación</p>}
 
 			<Users users={users} err={err} loading={loading} />
 
