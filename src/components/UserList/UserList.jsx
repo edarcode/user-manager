@@ -1,5 +1,7 @@
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
+import InputText from "../forms/InputText/InputText";
+
 import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
 import UserListForm from "../UserListForm/UserListForm";
@@ -52,6 +54,8 @@ export default function UserList() {
 				/>
 				<PageSelector page={page} setPage={setPage} totalPages={totalPages} />
 			</div>
+
+			<InputText label={"Label"} err={"Error"} placeholder="Placeholder..." />
 		</div>
 	);
 }
