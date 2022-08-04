@@ -1,5 +1,6 @@
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
+import InputTextAsync from "../forms/InputTextAsync/InputTextAsync";
 
 import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
@@ -32,6 +33,8 @@ export default function UserList() {
 
 	return (
 		<div className={css.usersList}>
+			<InputTextAsync title="prueba" success />
+
 			<Title>Listado de usuarios</Title>
 
 			<UserListForm

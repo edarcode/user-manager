@@ -1,0 +1,15 @@
+.success,
+.loading,
+.err {
+	width: 18px;
+	height: 18px;
+}
+.success {
+	color: var(--color-green);
+}
+.err {
+	color: var(--color-red);
+}
+.loading {
+	color: var(--color-gray);
+}

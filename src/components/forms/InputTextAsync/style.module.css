@@ -1,6 +1,7 @@
 .label {
 	display: grid;
 	gap: 6px;
+	position: relative;
 }
 .label span {
 	line-height: 21px;
@@ -12,9 +13,11 @@
 .err {
 	color: var(--color-red);
 }
-
+.wrapper {
+	position: relative;
+}
 .input {
-	padding: 8px 16px;
+	padding: 8px 40px 8px 16px;
 	box-shadow: var(--shadow-sm);
 	border-radius: var(--radius-sm);
 	border: none;
@@ -31,4 +34,10 @@
 }
 .inputErr {
 	outline: 1px solid var(--color-red);
+}
+.icon {
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	transform: translateY(-50%);
 }
