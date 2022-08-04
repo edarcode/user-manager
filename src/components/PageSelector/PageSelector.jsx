@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { kindButtonIcon } from "../../constants/kingButtonIcon";
 import ButtonIcon from "../ButtonIcon/ButtonIcon";
 import ArrowLeft from "../icons/ArrowLeft";
@@ -14,9 +13,7 @@ export default function PageSelector({ page, setPage, totalPages }) {
 	const handleOnClickBackPage = () => {
 		setPage(page - 1);
 	};
-	useEffect(() => {
-		if (page > totalPages) setPage(0);
-	}, [page, totalPages, setPage]);
+
 	return (
 		<div className={css.paged}>
 			<ButtonIcon
@@ -26,13 +23,13 @@ export default function PageSelector({ page, setPage, totalPages }) {
 				disabled={page === startPage}
 			/>
 			<span>
-				Página {page + 1} de {totalPages}
+				Página {page + 1} de {totalPages || 1}
 			</span>
 			<ButtonIcon
 				kind={kindButtonIcon.blackFill}
 				icon={ArrowRight}
 				onClick={handleOnClickNextPage}
-				disabled={page === endPage}
+				disabled={page === endPage || totalPages === 0}
 			/>
 		</div>
 	);

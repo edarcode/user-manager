@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
 import PageSelector from "../PageSelector/PageSelector";
@@ -13,12 +12,15 @@ export default function UserList({ initUsers }) {
 		searchUsers,
 		onlyActive,
 		sortBy,
+		page,
+		usersPerPage,
 		setSearchUsers,
 		setOnlyActive,
-		setSortBy
+		setSortBy,
+		setPage,
+		setUsersPerPage
 	} = useFilters();
-	const [page, setPage] = useState(0);
-	const [usersPerPage, setUsersPerPage] = useState(2);
+
 	const { users, totalPages } = useUsers(initUsers, {
 		onlyActive,
 		searchUsers,
