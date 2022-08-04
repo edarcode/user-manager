@@ -1,5 +1,5 @@
 export const allRoles = {
-	teacher: "profesor",
-	student: "alumno",
-	other: "otro"
+	teacher: "teacher",
+	student: "student",
+	other: "other"
 };

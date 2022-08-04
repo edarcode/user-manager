@@ -3,10 +3,12 @@
 	gap: 5px;
 	position: relative;
 	align-items: center;
+	cursor: pointer;
 }
 .check {
 	opacity: 0;
 	position: absolute;
+	cursor: pointer;
 }
 .check:not(:checked) + .fakeCheck > .svgCheck {
 	display: none;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { optionsUsersPerPage } from "../constants/optionsUsersPerPage";
 
 export const useFilters = () => {
 	const [filters, setFilters] = useState({
@@ -6,7 +7,7 @@ export const useFilters = () => {
 		onlyActive: false,
 		sortBy: "default",
 		page: 0,
-		usersPerPage: 2
+		usersPerPage: optionsUsersPerPage[1].value
 	});
 	const setSearchUsers = newSearchUsers => {
 		setFilters({ ...filters, searchUsers: newSearchUsers, page: 0 });
@@ -19,7 +20,7 @@ export const useFilters = () => {
 		});
 	};
 	const setSortBy = newSortBy => {
-		setFilters({ ...filters, sortBy: newSortBy });
+		setFilters({ ...filters, sortBy: newSortBy, page: 0 });
 	};
 	const setPage = newPage => {
 		setFilters({ ...filters, page: newPage });

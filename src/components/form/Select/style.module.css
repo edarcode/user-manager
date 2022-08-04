@@ -12,6 +12,7 @@
 	box-shadow: var(--shadow-sm);
 	background-color: var(--color-white);
 	border-radius: var(--radius-sm);
+	cursor: pointer;
 }
 .select:focus {
 	box-shadow: var(--shadow-md);

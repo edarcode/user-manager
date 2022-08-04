@@ -1,14 +1,13 @@
 .form {
 	display: grid;
+	justify-items: start;
 	gap: 20px;
 }
 .wrapperOne {
 	display: grid;
 	grid-auto-flow: column;
-	justify-items: start;
-	align-items: center;
 	gap: 15px;
-	grid-template-columns: 70% 1fr;
+	width: 100%;
 }
 .select {
 	justify-self: end;

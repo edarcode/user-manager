@@ -7,7 +7,7 @@ import Users from "../Users/Users";
 import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
 
-export default function UserList({ initUsers }) {
+export default function UserList() {
 	const {
 		searchUsers,
 		onlyActive,
@@ -21,7 +21,7 @@ export default function UserList({ initUsers }) {
 		setUsersPerPage
 	} = useFilters();
 
-	const { users, totalPages } = useUsers(initUsers, {
+	const { users, totalPages } = useUsers({
 		onlyActive,
 		searchUsers,
 		sortBy,

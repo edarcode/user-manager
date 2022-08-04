@@ -1,3 +1,4 @@
+import { optionsUsersPerPage } from "../../constants/optionsUsersPerPage";
 import Select from "../form/Select/Select";
 import css from "./style.module.css";
 
@@ -17,9 +18,11 @@ export default function UsersPerPage({
 				onChange={handleOnChange}
 				className={css.select}
 			>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
+				{optionsUsersPerPage.map(({ value, display }) => (
+					<option key={value} value={value}>
+						{display}
+					</option>
+				))}
 			</Select>
 			<span>Elementos por página</span>
 		</div>
