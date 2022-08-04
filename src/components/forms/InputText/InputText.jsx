@@ -1,9 +1,9 @@
 import css from "./style.module.css";
 
-export default function InputText({ label, err, className, ...props }) {
+export default function InputText({ title, err, className, ...props }) {
 	return (
 		<label className={`${css.label} ${className || ""}`}>
-			<span className={css.title}>{label}</span>
+			<span className={css.title}>{title}</span>
 			<input
 				{...props}
 				className={!err ? css.input : `${css.input} ${css.inputErr}`}
