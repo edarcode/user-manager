@@ -1,5 +1,5 @@
 import { kindButtonIcon } from "../../constants/kingButtonIcon";
-import ButtonIcon from "../ButtonIcon/ButtonIcon";
+import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
 import css from "./style.module.css";

@@ -1,5 +1,5 @@
 import { optionsUsersPerPage } from "../../constants/optionsUsersPerPage";
-import Select from "../form/Select/Select";
+import Select from "../forms/Select/Select";
 import css from "./style.module.css";
 
 export default function UsersPerPage({
