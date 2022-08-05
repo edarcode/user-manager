@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { allRoles } from "../../constants/allRoles";
 import { kindButtonIcon } from "../../constants/kindButtonIcon";
 import { useFormCreateUser } from "../../hooks/useFormCreateUser";
@@ -13,13 +14,15 @@ import css from "./style.module.css";
 
 export default function FormCreateUser({ setFormFilter }) {
 	const { name, username, setName, setUsername } = useFormCreateUser();
+	const [isCreatingUser, setIsCreatingUser] = useState(false);
 
 	const isDisable =
 		!name.value ||
 		name.err ||
 		!username.value ||
 		username.err ||
-		username.loading;
+		username.loading ||
+		isCreatingUser;
 
 	const handleOnChangeName = e => {
 		const name = e.target.value;
@@ -33,6 +36,8 @@ export default function FormCreateUser({ setFormFilter }) {
 	const handleOnSubmit = async e => {
 		e.preventDefault();
 		if (isDisable) return;
+
+		setIsCreatingUser(true);
 		const form = e.target;
 		const user = {
 			id: crypto.randomUUID(),
@@ -42,8 +47,8 @@ export default function FormCreateUser({ setFormFilter }) {
 			active: form.active.checked
 		};
 		const res = await fetchCreateUser(user);
-		if (res.ok) console.log("usuario creado");
-		else console.log("err");
+		if (res.ok) setFormFilter();
+		else setIsCreatingUser(false);
 	};
 
 	return (
@@ -73,7 +78,9 @@ export default function FormCreateUser({ setFormFilter }) {
 					<option value={allRoles.other}>Otro</option>
 				</Select>
 				<InputCheckbox name="active" text="¿Activo?" />
-				<Button disabled={isDisable}>Crear usuario</Button>
+				<Button disabled={isDisable}>
+					{isCreatingUser ? "Cargando..." : "Crear usuario"}
+				</Button>
 			</div>
 			<ButtonIcon
 				type="button"
