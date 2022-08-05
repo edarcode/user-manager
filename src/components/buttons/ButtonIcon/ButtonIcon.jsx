@@ -1,4 +1,4 @@
-import { kindButtonIcon } from "../../../constants/kingButtonIcon";
+import { kindButtonIcon } from "../../../constants/kindButtonIcon";
 import css from "./style.module.css";
 
 export default function ButtonIcon({

@@ -1,4 +1,4 @@
-import { kindButtonIcon } from "../../constants/kingButtonIcon";
+import { kindButtonIcon } from "../../constants/kindButtonIcon";
 import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";

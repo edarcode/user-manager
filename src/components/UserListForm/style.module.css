@@ -16,6 +16,9 @@
 .btnCreate {
 	justify-self: end;
 }
+.select > select {
+	padding-right: 110px;
+}
 .search {
 	max-width: 280px;
 }

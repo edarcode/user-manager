@@ -2,6 +2,7 @@ import { formTypes } from "../../constants/formTypes";
 import { useFilters } from "../../hooks/useFilters";
 import { useForm } from "../../hooks/useForm";
 import { useUsers } from "../../hooks/useUsers";
+import FormCreateUser from "../FormCreateUser/FormCreateUser";
 
 import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
@@ -31,7 +32,7 @@ export default function UserList() {
 		page,
 		usersPerPage
 	});
-	const { formType, setFormCreate } = useForm();
+	const { formType, setFormCreate, setFormFilter } = useForm();
 
 	return (
 		<div className={css.usersList}>
@@ -49,7 +50,9 @@ export default function UserList() {
 				/>
 			)}
 
-			{formType === formTypes.create && <p>Formulario de creación</p>}
+			{formType === formTypes.create && (
+				<FormCreateUser setFormFilter={setFormFilter} />
+			)}
 
 			<Users users={users} err={err} loading={loading} />
 
