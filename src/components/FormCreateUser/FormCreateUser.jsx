@@ -1,6 +1,7 @@
 import { allRoles } from "../../constants/allRoles";
 import { kindButtonIcon } from "../../constants/kindButtonIcon";
 import { useFormCreateUser } from "../../hooks/useFormCreateUser";
+import { fetchCreateUser } from "../../utils/fetchCreateUser";
 import Button from "../buttons/Button/Button";
 import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
@@ -13,6 +14,13 @@ import css from "./style.module.css";
 export default function FormCreateUser({ setFormFilter }) {
 	const { name, username, setName, setUsername } = useFormCreateUser();
 
+	const isDisable =
+		!name.value ||
+		name.err ||
+		!username.value ||
+		username.err ||
+		username.loading;
+
 	const handleOnChangeName = e => {
 		const name = e.target.value;
 		setName(name);
@@ -22,8 +30,24 @@ export default function FormCreateUser({ setFormFilter }) {
 		setUsername(username);
 	};
 
+	const handleOnSubmit = async e => {
+		e.preventDefault();
+		if (isDisable) return;
+		const form = e.target;
+		const user = {
+			id: crypto.randomUUID(),
+			username: username.value,
+			name: name.value,
+			role: form.role.value,
+			active: form.active.checked
+		};
+		const res = await fetchCreateUser(user);
+		if (res.ok) console.log("usuario creado");
+		else console.log("err");
+	};
+
 	return (
-		<form className={css.form}>
+		<form className={css.form} onSubmit={handleOnSubmit}>
 			<div className={css.wrapperOne}>
 				<InputText
 					title="nombre"
@@ -43,13 +67,13 @@ export default function FormCreateUser({ setFormFilter }) {
 				/>
 			</div>
 			<div className={css.wrapperTwo}>
-				<Select>
+				<Select name="role">
 					<option value={allRoles.teacher}>Profesor</option>
 					<option value={allRoles.student}>Alumno</option>
 					<option value={allRoles.other}>Otro</option>
 				</Select>
-				<InputCheckbox text="¿Activo?" />
-				<Button>Crear usuario</Button>
+				<InputCheckbox name="active" text="¿Activo?" />
+				<Button disabled={isDisable}>Crear usuario</Button>
 			</div>
 			<ButtonIcon
 				type="button"

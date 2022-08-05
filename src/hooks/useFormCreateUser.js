@@ -49,24 +49,32 @@ export const useFormCreateUser = () => {
 	};
 
 	useEffect(() => {
+		const controller = new AbortController();
+
 		const usernameLoading = formCreateUser.username.loading;
 		if (!usernameLoading) return;
 
-		const usernameValue = formCreateUser.username.value;
-		let newErr = null;
-		const controller = new AbortController();
-		isBusyUsername(usernameValue, controller.signal)
-			.then(isBusy => {
-				if (isBusy) newErr = "Username no disponible";
-			})
+		const idTimeout = setTimeout(() => {
+			const usernameValue = formCreateUser.username.value;
+			let newErr = null;
 
-			.catch(() => {
-				newErr = "Error al validar intente nuevamente";
-			})
-			.finally(() => {
-				setUsernameErrLoading(newErr);
-			});
-		return () => controller.abort();
+			isBusyUsername(usernameValue, controller.signal)
+				.then(isBusy => {
+					if (isBusy) newErr = "Username no disponible";
+				})
+
+				.catch(() => {
+					newErr = "Error al validar, intente nuevamente";
+				})
+				.finally(() => {
+					setUsernameErrLoading(newErr);
+				});
+		}, 500);
+
+		return () => {
+			clearTimeout(idTimeout);
+			controller.abort();
+		};
 	}, [formCreateUser.username.loading, formCreateUser.username.value]);
 
 	return {
