@@ -16,34 +16,6 @@ export const useFormCreateUser = () => {
 		}
 	});
 
-	useEffect(() => {
-		const usernameLoading = formCreateUser.username.loading;
-		if (!usernameLoading) return;
-
-		const usernameValue = formCreateUser.username.value;
-		let newErr = null;
-		isBusyUsername(usernameValue)
-			.then(isBusy => {
-				if (isBusy) newErr = "Username no disponible";
-			})
-
-			.catch(() => {
-				newErr = "Error en el servidor intente nuevamente";
-			})
-			.finally(() => {
-				setFormCreateUser(formCreateUser => {
-					return {
-						...formCreateUser,
-						username: {
-							...formCreateUser.username,
-							err: newErr,
-							loading: false
-						}
-					};
-				});
-			});
-	}, [formCreateUser.username.loading, formCreateUser.username.value]);
-
 	const setName = newName => {
 		const err = validateName(newName);
 		setFormCreateUser({
@@ -63,6 +35,39 @@ export const useFormCreateUser = () => {
 			}
 		});
 	};
+	const setUsernameErrLoading = newErr => {
+		setFormCreateUser(formCreateUser => {
+			return {
+				...formCreateUser,
+				username: {
+					...formCreateUser.username,
+					err: newErr,
+					loading: false
+				}
+			};
+		});
+	};
+
+	useEffect(() => {
+		const usernameLoading = formCreateUser.username.loading;
+		if (!usernameLoading) return;
+
+		const usernameValue = formCreateUser.username.value;
+		let newErr = null;
+		const controller = new AbortController();
+		isBusyUsername(usernameValue, controller.signal)
+			.then(isBusy => {
+				if (isBusy) newErr = "Username no disponible";
+			})
+
+			.catch(() => {
+				newErr = "Error al validar intente nuevamente";
+			})
+			.finally(() => {
+				setUsernameErrLoading(newErr);
+			});
+		return () => controller.abort();
+	}, [formCreateUser.username.loading, formCreateUser.username.value]);
 
 	return {
 		name: formCreateUser.name,

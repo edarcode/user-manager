@@ -1,8 +1,8 @@
 import { serverRoutes } from "../constants/serverRoutes";
 
-export const fetchUser = async querys => {
+export const fetchUser = async (querys, signal) => {
 	const url = addQuery(serverRoutes.users, querys);
-	const res = await fetch(url);
+	const res = await fetch(url, { signal });
 	if (res.ok) {
 		const user = await res.json();
 		return user;

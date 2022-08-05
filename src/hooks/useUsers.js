@@ -11,10 +11,12 @@ export const useUsers = params => {
 
 	useEffect(() => {
 		setLoading(setUsers, true);
-		fetchUsers()
+		const controller = new AbortController();
+		fetchUsers(controller.signal)
 			.then(users => setData(users, setUsers))
 			.catch(() => setErr(setUsers, true))
 			.finally(() => setLoading(setUsers, false));
+		return () => controller.abort();
 	}, []);
 
 	const { usersToDisplay, totalPages } = getUsersToDisplay(users.data, params);
