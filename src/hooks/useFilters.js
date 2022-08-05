@@ -7,7 +7,7 @@ export const useFilters = () => {
 		onlyActive: false,
 		sortBy: "default",
 		page: 0,
-		usersPerPage: optionsUsersPerPage[1].value
+		usersPerPage: optionsUsersPerPage[0].value
 	});
 	const setSearchUsers = newSearchUsers => {
 		setFilters({ ...filters, searchUsers: newSearchUsers, page: 0 });

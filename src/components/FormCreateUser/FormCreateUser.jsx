@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { allRoles } from "../../constants/allRoles";
 import { kindButtonIcon } from "../../constants/kindButtonIcon";
 import Button from "../buttons/Button/Button";
@@ -10,11 +11,42 @@ import Cross from "../icons/Cross";
 import css from "./style.module.css";
 
 export default function FormCreateUser({ setFormFilter }) {
+	const [form, setForm] = useState({
+		name: "",
+		username: ""
+	});
+
+	const setName = newName => {
+		setForm({ ...form, name: newName });
+	};
+	const setUsername = newUsername => {
+		setForm({ ...form, username: newUsername });
+	};
+
+	const handleOnChangeName = e => {
+		const name = e.target.value;
+		setName(name);
+	};
+	const handleOnChangeUsername = e => {
+		const username = e.target.value;
+		setUsername(username);
+	};
+
 	return (
 		<form className={css.form}>
 			<div className={css.wrapperOne}>
-				<InputText title="nombre" placeholder="Edwin Ortiz..." />
-				<InputTextAsync title="username" placeholder="edarcode..." />
+				<InputText
+					title="nombre"
+					placeholder="Edwin Ortiz..."
+					value={form.name}
+					onChange={handleOnChangeName}
+				/>
+				<InputTextAsync
+					title="username"
+					placeholder="edarcode..."
+					value={form.username}
+					onChange={handleOnChangeUsername}
+				/>
 			</div>
 			<div className={css.wrapperTwo}>
 				<Select>
