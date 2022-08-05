@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { allRoles } from "../../constants/allRoles";
 import { kindButtonIcon } from "../../constants/kindButtonIcon";
+import { useFormCreateUser } from "../../hooks/useFormCreateUser";
 import Button from "../buttons/Button/Button";
 import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
@@ -11,17 +11,7 @@ import Cross from "../icons/Cross";
 import css from "./style.module.css";
 
 export default function FormCreateUser({ setFormFilter }) {
-	const [form, setForm] = useState({
-		name: "",
-		username: ""
-	});
-
-	const setName = newName => {
-		setForm({ ...form, name: newName });
-	};
-	const setUsername = newUsername => {
-		setForm({ ...form, username: newUsername });
-	};
+	const { name, username, setName, setUsername } = useFormCreateUser();
 
 	const handleOnChangeName = e => {
 		const name = e.target.value;
@@ -38,13 +28,15 @@ export default function FormCreateUser({ setFormFilter }) {
 				<InputText
 					title="nombre"
 					placeholder="Edwin Ortiz..."
-					value={form.name}
+					value={name.value}
+					err={name.err}
 					onChange={handleOnChangeName}
 				/>
 				<InputTextAsync
 					title="username"
 					placeholder="edarcode..."
-					value={form.username}
+					value={username.value}
+					err={username.err}
 					onChange={handleOnChangeUsername}
 				/>
 			</div>
