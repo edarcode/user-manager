@@ -4,19 +4,9 @@ import { validateName } from "../validations/validateName";
 import { validateUsername } from "../validations/validateUsername";
 
 export const useFormUpdateUser = user => {
-	const [formUpdateUser, setFormUpdateUser] = useState({
-		name: {
-			value: user.name,
-			err: null
-		},
-		username: {
-			value: user.username,
-			loading: false,
-			err: null
-		},
-		role: user.role,
-		active: user.active
-	});
+	const [formUpdateUser, setFormUpdateUser] = useState(() =>
+		getInitiaStateFormUpdateUser(user)
+	);
 
 	const setName = newName => {
 		const err = validateName(newName);
@@ -100,6 +90,11 @@ export const useFormUpdateUser = user => {
 		};
 	}, [formUpdateUser.username.loading, formUpdateUser.username.value]);
 
+	useEffect(() => {
+		const newFormUpdateUser = getInitiaStateFormUpdateUser(user);
+		setFormUpdateUser(newFormUpdateUser);
+	}, [user]);
+
 	return {
 		name: formUpdateUser.name,
 		username: formUpdateUser.username,
@@ -121,4 +116,20 @@ const isSameFormUpdateUserWithUser = (formUpdateUser, user) => {
 		formUpdateUser.active !== user.active;
 
 	return !isDiferent;
+};
+
+const getInitiaStateFormUpdateUser = user => {
+	return {
+		name: {
+			value: user.name,
+			err: null
+		},
+		username: {
+			value: user.username,
+			loading: false,
+			err: null
+		},
+		role: user.role,
+		active: user.active
+	};
 };
