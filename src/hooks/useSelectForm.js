@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { formTypes } from "../constants/formTypes";
 
-export const useForm = () => {
+export const useSelectForm = () => {
 	const [currentForm, setCurrentForm] = useState({
 		form: formTypes.filter,
 		user: null

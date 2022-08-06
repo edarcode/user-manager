@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { kindButton } from "../../constants/kindButton";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import { fetchDeleteUser } from "../../utils/fetchDeleteUser";
 import Button from "../buttons/Button/Button";
 import css from "./style.module.css";
 
-export default function FormDeleteUser({ onSuccess, user, onCancel }) {
+export default function FormDeleteUser() {
+	const { user, reUploadUsers, setFormFilter } = useContext(UserFormsContext);
 	const [isDeletingUser, setIsUpdatingUser] = useState(false);
 
 	const handleOnSubmit = async e => {
@@ -12,7 +14,7 @@ export default function FormDeleteUser({ onSuccess, user, onCancel }) {
 		setIsUpdatingUser(true);
 		const res = await fetchDeleteUser(user.id);
 
-		if (res.ok) onSuccess();
+		if (res.ok) reUploadUsers();
 		else setIsUpdatingUser(false);
 	};
 
@@ -23,7 +25,7 @@ export default function FormDeleteUser({ onSuccess, user, onCancel }) {
 				type="button"
 				disabled={isDeletingUser}
 				kind={kindButton.white}
-				onClick={onCancel}
+				onClick={setFormFilter}
 			>
 				Cancelar
 			</Button>

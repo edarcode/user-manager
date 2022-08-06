@@ -1,11 +1,11 @@
 import { formTypes } from "../../constants/formTypes";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import { useFilters } from "../../hooks/useFilters";
-import { useForm } from "../../hooks/useForm";
+import { useSelectForm } from "../../hooks/useSelectForm";
 import { useUsers } from "../../hooks/useUsers";
 import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
 import FormDeleteUser from "../FormDeleteUser/FormDeleteUser";
-
 import FormFilterUsers from "../FormFilterUsers/FormFilterUsers";
 import FormUpdateUser from "../FormUpdateUser/FormUpdateUser";
 import PageSelector from "../PageSelector/PageSelector";
@@ -38,7 +38,7 @@ export default function UserList() {
 		setFormFilter,
 		setFormEdit,
 		setFormDelete
-	} = useForm();
+	} = useSelectForm();
 
 	const reUploadUsers = () => {
 		setReUploadUsers();
@@ -46,41 +46,32 @@ export default function UserList() {
 		reStartFilters();
 	};
 
+	const valueUserFormsContext = {
+		user: currentUser,
+		setFormEdit,
+		setFormDelete,
+		setFormCreate,
+		setFormFilter,
+		reUploadUsers
+	};
+
 	return (
 		<div className={css.usersList}>
 			<Title>Listado de usuarios</Title>
 
-			{(currentForm === formTypes.filter && (
-				<FormFilterUsers
-					{...filters}
-					{...settersFilters}
-					setFormCreate={setFormCreate}
-				/>
-			)) || (
-				<WrapperUserForm onClose={setFormFilter}>
-					{currentForm === formTypes.create && (
-						<FormCreateUser onSuccess={reUploadUsers} />
-					)}
-					{currentForm === formTypes.edit && (
-						<FormUpdateUser onSuccess={reUploadUsers} user={currentUser} />
-					)}
-					{currentForm === formTypes.delete && (
-						<FormDeleteUser
-							onSuccess={reUploadUsers}
-							user={currentUser}
-							onCancel={setFormFilter}
-						/>
-					)}
-				</WrapperUserForm>
-			)}
+			<UserFormsContext.Provider value={valueUserFormsContext}>
+				{(currentForm === formTypes.filter && (
+					<FormFilterUsers {...filters} {...settersFilters} />
+				)) || (
+					<WrapperUserForm>
+						{currentForm === formTypes.create && <FormCreateUser />}
+						{currentForm === formTypes.edit && <FormUpdateUser />}
+						{currentForm === formTypes.delete && <FormDeleteUser />}
+					</WrapperUserForm>
+				)}
 
-			<Users
-				users={usersToDisplay}
-				err={err}
-				loading={loading}
-				setFormEdit={setFormEdit}
-				setFormDelete={setFormDelete}
-			/>
+				<Users users={usersToDisplay} err={err} loading={loading} />
+			</UserFormsContext.Provider>
 
 			<div className={css.wrapperOne}>
 				<UsersPerPage
@@ -88,6 +79,7 @@ export default function UserList() {
 					usersPerPage={pagination.usersPerPage}
 					setUsersPerPage={settersPaginations.setUsersPerPage}
 				/>
+
 				<PageSelector
 					page={pagination.page}
 					setPage={settersPaginations.setPage}

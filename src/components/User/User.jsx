@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { kindButtonIcon } from "../../constants/kindButtonIcon";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import Pencil from "../icons/Pencil";
 import Trash from "../icons/Trash";
@@ -7,15 +9,9 @@ import UserDisplay from "../UserDisplay/UserDisplay";
 import UserRole from "../UserRole/UserRole";
 import css from "./style.module.css";
 
-export default function User({
-	id,
-	name,
-	username,
-	active,
-	role,
-	setFormEdit,
-	setFormDelete
-}) {
+export default function User({ id, name, username, active, role }) {
+	const { setFormEdit, setFormDelete } = useContext(UserFormsContext);
+
 	const handleOnClickFormEdit = () => {
 		setFormEdit({ id, name, username, active, role });
 	};

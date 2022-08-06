@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { optionsSort } from "../../constants/optionsSort";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import Button from "../buttons/Button/Button";
 import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
 import InputSearch from "../forms/InputSearch/InputSearch";
@@ -11,9 +13,10 @@ export default function FormFilterUsers({
 	onlyActive,
 	setOnlyActive,
 	sortBy,
-	setSortBy,
-	setFormCreate
+	setSortBy
 }) {
+	const { setFormCreate } = useContext(UserFormsContext);
+
 	const handleOnChangeSearchUsers = e => {
 		const user = e.target.value;
 		setSearchUsers(user);

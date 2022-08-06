@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { allRoles } from "../../constants/allRoles";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import { useFormUpdateUser } from "../../hooks/useFormUpdateUser";
 import { fetchUpdateUser } from "../../utils/fetchUpdateUser";
 import Button from "../buttons/Button/Button";
@@ -9,7 +10,8 @@ import InputTextAsync from "../forms/InputTextAsync/InputTextAsync";
 import Select from "../forms/Select/Select";
 import css from "./style.module.css";
 
-export default function FormUpdateUser({ onSuccess, user }) {
+export default function FormUpdateUser() {
+	const { reUploadUsers, user } = useContext(UserFormsContext);
 	const {
 		name,
 		username,
@@ -54,7 +56,7 @@ export default function FormUpdateUser({ onSuccess, user }) {
 			role,
 			active
 		});
-		if (res.ok) onSuccess();
+		if (res.ok) reUploadUsers();
 		else setIsUpdatingUser(false);
 	};
 
@@ -91,7 +93,7 @@ export default function FormUpdateUser({ onSuccess, user }) {
 				<InputCheckbox
 					name="active"
 					text="¿Activo?"
-					value={active}
+					checked={active}
 					onChange={handleOnChangeActive}
 				/>
 				<Button disabled={isDisable}>
