@@ -5,18 +5,24 @@ import { useUsers } from "../../hooks/useUsers";
 import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
 
+import FormFilterUsers from "../FormFilterUsers/FormFilterUsers";
 import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
-import UserListForm from "../UserListForm/UserListForm";
 import Users from "../Users/Users";
 import UsersPerPage from "../UsersPerPage/UsersPerPage";
+import WrapperUserForm from "../WrapperUserForm/WrapperUserForm";
 import css from "./style.module.css";
 
 export default function UserList() {
-	const { users, err, loading } = useUsers();
+	const { users, err, loading, setReUploadUsers } = useUsers();
 
-	const { filters, settersFilters, pagination, settersPaginations } =
-		useFilters();
+	const {
+		filters,
+		settersFilters,
+		pagination,
+		settersPaginations,
+		reStartFilters
+	} = useFilters();
 
 	const { usersToDisplay, totalPages } = getUsersToDisplay(users, {
 		...filters,
@@ -25,12 +31,18 @@ export default function UserList() {
 
 	const { formType, setFormCreate, setFormFilter } = useForm();
 
+	const reUploadUsers = () => {
+		setReUploadUsers();
+		setFormFilter();
+		reStartFilters();
+	};
+
 	return (
 		<div className={css.usersList}>
 			<Title>Listado de usuarios</Title>
 
 			{formType === formTypes.filter && (
-				<UserListForm
+				<FormFilterUsers
 					{...filters}
 					{...settersFilters}
 					setFormCreate={setFormCreate}
@@ -38,7 +50,9 @@ export default function UserList() {
 			)}
 
 			{formType === formTypes.create && (
-				<FormCreateUser setFormFilter={setFormFilter} />
+				<WrapperUserForm onClose={setFormFilter}>
+					<FormCreateUser onSuccess={reUploadUsers} />
+				</WrapperUserForm>
 			)}
 
 			<Users users={usersToDisplay} err={err} loading={loading} />

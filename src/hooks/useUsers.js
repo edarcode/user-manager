@@ -18,7 +18,12 @@ export const useUsers = () => {
 		setUsers(users => ({ ...users, loading: newLoading }));
 	};
 
+	const setReUploadUsers = () => {
+		setLoading(true);
+	};
+
 	useEffect(() => {
+		if (!users.loading) return;
 		setLoading(true);
 		const controller = new AbortController();
 		fetchUsers(controller.signal)
@@ -26,11 +31,12 @@ export const useUsers = () => {
 			.catch(() => setErr(true))
 			.finally(() => setLoading(false));
 		return () => controller.abort();
-	}, []);
+	}, [users.loading]);
 
 	return {
 		users: users.data,
 		err: users.err,
-		loading: users.loading
+		loading: users.loading,
+		setReUploadUsers
 	};
 };

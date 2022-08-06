@@ -5,7 +5,7 @@ import InputSearch from "../forms/InputSearch/InputSearch";
 import Select from "../forms/Select/Select";
 import css from "./style.module.css";
 
-export default function UserListForm({
+export default function FormFilterUsers({
 	searchUsers,
 	setSearchUsers,
 	onlyActive,

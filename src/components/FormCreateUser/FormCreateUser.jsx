@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { allRoles } from "../../constants/allRoles";
-import { kindButtonIcon } from "../../constants/kindButtonIcon";
 import { useFormCreateUser } from "../../hooks/useFormCreateUser";
 import { fetchCreateUser } from "../../utils/fetchCreateUser";
 import Button from "../buttons/Button/Button";
-import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
 import InputText from "../forms/InputText/InputText";
 import InputTextAsync from "../forms/InputTextAsync/InputTextAsync";
 import Select from "../forms/Select/Select";
-import Cross from "../icons/Cross";
 import css from "./style.module.css";
 
-export default function FormCreateUser({ setFormFilter }) {
+export default function FormCreateUser({ onSuccess }) {
 	const { name, username, setName, setUsername, isValidateFormCreateUser } =
 		useFormCreateUser();
 	const [isCreatingUser, setIsCreatingUser] = useState(false);
@@ -42,7 +39,7 @@ export default function FormCreateUser({ setFormFilter }) {
 			active: form.active.checked
 		};
 		const res = await fetchCreateUser(user);
-		if (res.ok) setFormFilter();
+		if (res.ok) onSuccess();
 		else setIsCreatingUser(false);
 	};
 
@@ -77,13 +74,6 @@ export default function FormCreateUser({ setFormFilter }) {
 					{isCreatingUser ? "Cargando..." : "Crear usuario"}
 				</Button>
 			</div>
-			<ButtonIcon
-				type="button"
-				icon={Cross}
-				kind={kindButtonIcon.blackFill}
-				className={css.btnIcon}
-				onClick={setFormFilter}
-			/>
 		</form>
 	);
 }
