@@ -13,16 +13,11 @@ import Cross from "../icons/Cross";
 import css from "./style.module.css";
 
 export default function FormCreateUser({ setFormFilter }) {
-	const { name, username, setName, setUsername } = useFormCreateUser();
+	const { name, username, setName, setUsername, isValidateFormCreateUser } =
+		useFormCreateUser();
 	const [isCreatingUser, setIsCreatingUser] = useState(false);
 
-	const isDisable =
-		!name.value ||
-		name.err ||
-		!username.value ||
-		username.err ||
-		username.loading ||
-		isCreatingUser;
+	const isDisable = isValidateFormCreateUser || isCreatingUser;
 
 	const handleOnChangeName = e => {
 		const name = e.target.value;

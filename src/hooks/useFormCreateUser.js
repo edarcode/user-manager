@@ -48,6 +48,13 @@ export const useFormCreateUser = () => {
 		});
 	};
 
+	const isValidateFormCreateUser =
+		!formCreateUser.name.value ||
+		formCreateUser.name.err ||
+		!formCreateUser.username.value ||
+		formCreateUser.username.err ||
+		formCreateUser.username.loading;
+
 	useEffect(() => {
 		const controller = new AbortController();
 
@@ -81,6 +88,7 @@ export const useFormCreateUser = () => {
 		name: formCreateUser.name,
 		username: formCreateUser.username,
 		setName,
-		setUsername
+		setUsername,
+		isValidateFormCreateUser
 	};
 };

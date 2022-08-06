@@ -2,6 +2,7 @@ import { formTypes } from "../../constants/formTypes";
 import { useFilters } from "../../hooks/useFilters";
 import { useForm } from "../../hooks/useForm";
 import { useUsers } from "../../hooks/useUsers";
+import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
 
 import PageSelector from "../PageSelector/PageSelector";
@@ -12,6 +13,8 @@ import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
 
 export default function UserList() {
+	const { users, err, loading } = useUsers();
+
 	const {
 		searchUsers,
 		onlyActive,
@@ -25,13 +28,14 @@ export default function UserList() {
 		setUsersPerPage
 	} = useFilters();
 
-	const { users, totalPages, err, loading } = useUsers({
+	const { usersToDisplay, totalPages } = getUsersToDisplay(users, {
 		onlyActive,
 		searchUsers,
 		sortBy,
 		page,
 		usersPerPage
 	});
+
 	const { formType, setFormCreate, setFormFilter } = useForm();
 
 	return (
@@ -54,7 +58,7 @@ export default function UserList() {
 				<FormCreateUser setFormFilter={setFormFilter} />
 			)}
 
-			<Users users={users} err={err} loading={loading} />
+			<Users users={usersToDisplay} err={err} loading={loading} />
 
 			<div className={css.wrapperOne}>
 				<UsersPerPage

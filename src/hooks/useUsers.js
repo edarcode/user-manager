@@ -1,40 +1,36 @@
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../utils/fetchUsers";
-import { getUsersToDisplay } from "../utils/getUsersToDisplay";
 
-export const useUsers = params => {
+export const useUsers = () => {
 	const [users, setUsers] = useState({
 		data: [],
 		err: false,
 		loading: true
 	});
 
+	const setData = newData => {
+		setUsers(users => ({ ...users, data: newData }));
+	};
+	const setErr = newErr => {
+		setUsers(users => ({ ...users, err: newErr }));
+	};
+	const setLoading = newLoading => {
+		setUsers(users => ({ ...users, loading: newLoading }));
+	};
+
 	useEffect(() => {
-		setLoading(setUsers, true);
+		setLoading(true);
 		const controller = new AbortController();
 		fetchUsers(controller.signal)
-			.then(users => setData(users, setUsers))
-			.catch(() => setErr(setUsers, true))
-			.finally(() => setLoading(setUsers, false));
+			.then(users => setData(users))
+			.catch(() => setErr(true))
+			.finally(() => setLoading(false));
 		return () => controller.abort();
 	}, []);
 
-	const { usersToDisplay, totalPages } = getUsersToDisplay(users.data, params);
-
 	return {
-		users: usersToDisplay,
-		totalPages,
+		users: users.data,
 		err: users.err,
 		loading: users.loading
 	};
-};
-
-const setData = (newData, setUsers) => {
-	setUsers(users => ({ ...users, data: newData }));
-};
-const setErr = (setUsers, newErr) => {
-	setUsers(users => ({ ...users, err: newErr }));
-};
-const setLoading = (setUsers, newLoading) => {
-	setUsers(users => ({ ...users, loading: newLoading }));
 };
