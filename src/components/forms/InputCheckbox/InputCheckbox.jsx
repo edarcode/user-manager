@@ -4,7 +4,7 @@ import css from "./style.module.css";
 export default function InputCheckbox(props) {
 	return (
 		<label className={css.label}>
-			<input className={css.check} {...props} type="checkbox" />
+			<input {...props} className={css.check} type="checkbox" />
 			<span className={css.fakeCheck}>
 				<Check className={css.svgCheck} />
 			</span>

@@ -2,12 +2,23 @@ import { useState } from "react";
 import { formTypes } from "../constants/formTypes";
 
 export const useForm = () => {
-	const [formType, setFormType] = useState(formTypes.filter);
+	const [currentForm, setCurrentForm] = useState({
+		form: formTypes.filter,
+		user: null
+	});
 
-	const setFormFilter = () => setFormType(formTypes.filter);
-	const setFormCreate = () => setFormType(formTypes.create);
-	const setFormEdit = () => setFormType(formTypes.edit);
-	const setFormDelete = () => setFormType(formTypes.delete);
+	const setFormFilter = () => setCurrentForm({ form: formTypes.filter });
+	const setFormCreate = () => setCurrentForm({ form: formTypes.create });
+	const setFormEdit = user => setCurrentForm({ form: formTypes.edit, user });
+	const setFormDelete = user =>
+		setCurrentForm({ form: formTypes.delete, user });
 
-	return { formType, setFormFilter, setFormCreate, setFormEdit, setFormDelete };
+	return {
+		currentForm: currentForm.form,
+		currentUser: currentForm.user,
+		setFormFilter,
+		setFormCreate,
+		setFormEdit,
+		setFormDelete
+	};
 };

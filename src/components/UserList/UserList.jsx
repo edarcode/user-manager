@@ -6,6 +6,7 @@ import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
 
 import FormFilterUsers from "../FormFilterUsers/FormFilterUsers";
+import FormUpdateUser from "../FormUpdateUser/FormUpdateUser";
 import PageSelector from "../PageSelector/PageSelector";
 import Title from "../Title/Title";
 import Users from "../Users/Users";
@@ -29,7 +30,14 @@ export default function UserList() {
 		...pagination
 	});
 
-	const { formType, setFormCreate, setFormFilter } = useForm();
+	const {
+		currentForm,
+		currentUser,
+		setFormCreate,
+		setFormFilter,
+		setFormEdit,
+		setFormDelete
+	} = useForm();
 
 	const reUploadUsers = () => {
 		setReUploadUsers();
@@ -41,21 +49,30 @@ export default function UserList() {
 		<div className={css.usersList}>
 			<Title>Listado de usuarios</Title>
 
-			{formType === formTypes.filter && (
+			{(currentForm === formTypes.filter && (
 				<FormFilterUsers
 					{...filters}
 					{...settersFilters}
 					setFormCreate={setFormCreate}
 				/>
-			)}
-
-			{formType === formTypes.create && (
+			)) || (
 				<WrapperUserForm onClose={setFormFilter}>
-					<FormCreateUser onSuccess={reUploadUsers} />
+					{currentForm === formTypes.create && (
+						<FormCreateUser onSuccess={reUploadUsers} />
+					)}
+					{currentForm === formTypes.edit && (
+						<FormUpdateUser onSuccess={reUploadUsers} user={currentUser} />
+					)}
 				</WrapperUserForm>
 			)}
 
-			<Users users={usersToDisplay} err={err} loading={loading} />
+			<Users
+				users={usersToDisplay}
+				err={err}
+				loading={loading}
+				setFormEdit={setFormEdit}
+				setFormDelete={setFormDelete}
+			/>
 
 			<div className={css.wrapperOne}>
 				<UsersPerPage
