@@ -15,25 +15,12 @@ import css from "./style.module.css";
 export default function UserList() {
 	const { users, err, loading } = useUsers();
 
-	const {
-		searchUsers,
-		onlyActive,
-		sortBy,
-		page,
-		usersPerPage,
-		setSearchUsers,
-		setOnlyActive,
-		setSortBy,
-		setPage,
-		setUsersPerPage
-	} = useFilters();
+	const { filters, settersFilters, pagination, settersPaginations } =
+		useFilters();
 
 	const { usersToDisplay, totalPages } = getUsersToDisplay(users, {
-		onlyActive,
-		searchUsers,
-		sortBy,
-		page,
-		usersPerPage
+		...filters,
+		...pagination
 	});
 
 	const { formType, setFormCreate, setFormFilter } = useForm();
@@ -44,12 +31,8 @@ export default function UserList() {
 
 			{formType === formTypes.filter && (
 				<UserListForm
-					searchUsers={searchUsers}
-					setSearchUsers={setSearchUsers}
-					onlyActive={onlyActive}
-					setOnlyActive={setOnlyActive}
-					sortBy={sortBy}
-					setSortBy={setSortBy}
+					{...filters}
+					{...settersFilters}
 					setFormCreate={setFormCreate}
 				/>
 			)}
@@ -63,10 +46,14 @@ export default function UserList() {
 			<div className={css.wrapperOne}>
 				<UsersPerPage
 					className={css.perPage}
-					usersPerPage={usersPerPage}
-					setUsersPerPage={setUsersPerPage}
+					usersPerPage={pagination.usersPerPage}
+					setUsersPerPage={settersPaginations.setUsersPerPage}
 				/>
-				<PageSelector page={page} setPage={setPage} totalPages={totalPages} />
+				<PageSelector
+					page={pagination.page}
+					setPage={settersPaginations.setPage}
+					totalPages={totalPages}
+				/>
 			</div>
 		</div>
 	);
