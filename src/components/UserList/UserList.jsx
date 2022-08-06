@@ -4,6 +4,7 @@ import { useForm } from "../../hooks/useForm";
 import { useUsers } from "../../hooks/useUsers";
 import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
+import FormDeleteUser from "../FormDeleteUser/FormDeleteUser";
 
 import FormFilterUsers from "../FormFilterUsers/FormFilterUsers";
 import FormUpdateUser from "../FormUpdateUser/FormUpdateUser";
@@ -62,6 +63,13 @@ export default function UserList() {
 					)}
 					{currentForm === formTypes.edit && (
 						<FormUpdateUser onSuccess={reUploadUsers} user={currentUser} />
+					)}
+					{currentForm === formTypes.delete && (
+						<FormDeleteUser
+							onSuccess={reUploadUsers}
+							user={currentUser}
+							onCancel={setFormFilter}
+						/>
 					)}
 				</WrapperUserForm>
 			)}

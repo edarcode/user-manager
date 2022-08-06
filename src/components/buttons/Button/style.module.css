@@ -11,6 +11,7 @@
 }
 .btn:focus {
 	box-shadow: var(--shadow-md);
+	outline: transparent;
 }
 .btn:disabled {
 	cursor: default;
