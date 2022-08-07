@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { formTypes } from "../../constants/formTypes";
-import { optionsSort } from "../../constants/optionsSort";
-import { UserFormsContext } from "../../contexts/UserFormsContext";
-import Button from "../buttons/Button/Button";
-import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
-import InputSearch from "../forms/InputSearch/InputSearch";
-import Select from "../forms/Select/Select";
+import { formTypes } from "../../../constants/formTypes";
+import { optionsSort } from "../../../constants/optionsSort";
+import { UserFormsContext } from "../../../contexts/UserFormsContext";
+import Button from "../../buttons/Button/Button";
+import InputCheckbox from "../../forms/InputCheckbox/InputCheckbox";
+import InputSearch from "../../forms/InputSearch/InputSearch";
+import Select from "../../forms/Select/Select";
 import css from "./style.module.css";
 
 export default function FormFilterUsers({

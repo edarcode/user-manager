@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { formTypes } from "../../constants/formTypes";
-import { kindButtonIcon } from "../../constants/kindButtonIcon";
-import { UserFormsContext } from "../../contexts/UserFormsContext";
-import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
+import { formTypes } from "../../../constants/formTypes";
+import { kindButtonIcon } from "../../../constants/kindButtonIcon";
+import { UserFormsContext } from "../../../contexts/UserFormsContext";
+import ButtonIcon from "../../buttons/ButtonIcon/ButtonIcon";
+import Cross from "../../icons/Cross";
+
 import FormCreateUser from "../FormCreateUser/FormCreateUser";
 import FormDeleteUser from "../FormDeleteUser/FormDeleteUser";
 import FormUpdateUser from "../FormUpdateUser/FormUpdateUser";
-import Cross from "../icons/Cross";
+
 import css from "./style.module.css";
 
 const forms = {

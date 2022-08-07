@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import { allRoles } from "../../constants/allRoles";
-import { UserFormsContext } from "../../contexts/UserFormsContext";
-import { useFormUpdateUser } from "../../hooks/useFormUpdateUser";
-import { fetchUpdateUser } from "../../utils/fetchUpdateUser";
-import Button from "../buttons/Button/Button";
-import InputCheckbox from "../forms/InputCheckbox/InputCheckbox";
-import InputText from "../forms/InputText/InputText";
-import InputTextAsync from "../forms/InputTextAsync/InputTextAsync";
-import Select from "../forms/Select/Select";
+import { allRoles } from "../../../constants/allRoles";
+import { UserFormsContext } from "../../../contexts/UserFormsContext";
+import { useFormUpdateUser } from "../../../hooks/useFormUpdateUser";
+import { fetchUpdateUser } from "../../../utils/fetchUpdateUser";
+import Button from "../../buttons/Button/Button";
+import InputCheckbox from "../../forms/InputCheckbox/InputCheckbox";
+import InputText from "../../forms/InputText/InputText";
+import InputTextAsync from "../../forms/InputTextAsync/InputTextAsync";
+import Select from "../../forms/Select/Select";
 import css from "./style.module.css";
 
 export default function FormUpdateUser() {

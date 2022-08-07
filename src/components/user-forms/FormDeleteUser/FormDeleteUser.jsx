@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { kindButton } from "../../constants/kindButton";
-import { UserFormsContext } from "../../contexts/UserFormsContext";
-import { fetchDeleteUser } from "../../utils/fetchDeleteUser";
-import Button from "../buttons/Button/Button";
+import { kindButton } from "../../../constants/kindButton";
+import { UserFormsContext } from "../../../contexts/UserFormsContext";
+import { fetchDeleteUser } from "../../../utils/fetchDeleteUser";
+import Button from "../../buttons/Button/Button";
 import css from "./style.module.css";
 
 export default function FormDeleteUser() {
