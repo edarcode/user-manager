@@ -22,7 +22,7 @@ const addQuery = (
 ) => {
 	const newUrl = new URL(url);
 
-	if (page) newUrl.searchParams.append("_page", page);
+	if (page) newUrl.searchParams.append("_page", page + 1);
 	if (usersPerPage) newUrl.searchParams.append("_limit", usersPerPage);
 	if (searchUsers) newUrl.searchParams.append("name_like", searchUsers);
 	if (onlyActive) newUrl.searchParams.append("active", true);
@@ -34,6 +34,5 @@ const addQuery = (
 			newUrl.searchParams.append("_order", typeOrder);
 		}
 	}
-
 	return newUrl.href;
 };

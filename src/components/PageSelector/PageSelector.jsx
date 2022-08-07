@@ -6,7 +6,7 @@ import css from "./style.module.css";
 
 export default function PageSelector({ page, setPage, totalPages }) {
 	const startPage = 0;
-	const endPage = totalPages;
+	const endPage = totalPages - 1;
 	const handleOnClickNextPage = () => {
 		setPage(page + 1);
 	};
@@ -23,7 +23,7 @@ export default function PageSelector({ page, setPage, totalPages }) {
 				disabled={page === startPage}
 			/>
 			<span>
-				Página {page + 1} de {totalPages + 1 || 1}
+				Página {page + 1} de {totalPages || 1}
 			</span>
 			<ButtonIcon
 				kind={kindButtonIcon.blackFill}
