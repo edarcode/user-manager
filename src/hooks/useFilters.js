@@ -31,7 +31,7 @@ export const useFilters = () => {
 	const setUsersPerPage = newUsersPerPage => {
 		setFilters({ ...filters, usersPerPage: newUsersPerPage, page: 0 });
 	};
-	const setReStartFilters = () => {
+	const reStartFilters = () => {
 		setFilters(initialFilters);
 	};
 	return {
@@ -43,6 +43,6 @@ export const useFilters = () => {
 		settersFilters: { setSearchUsers, setOnlyActive, setSortBy },
 		pagination: { page: filters.page, usersPerPage: filters.usersPerPage },
 		settersPaginations: { setPage, setUsersPerPage },
-		reStartFilters: setReStartFilters
+		reStartFilters
 	};
 };

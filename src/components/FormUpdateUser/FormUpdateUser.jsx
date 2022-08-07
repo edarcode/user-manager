@@ -11,7 +11,7 @@ import Select from "../forms/Select/Select";
 import css from "./style.module.css";
 
 export default function FormUpdateUser() {
-	const { reUploadUsers, user } = useContext(UserFormsContext);
+	const { reUploadUsers, currentUser: user } = useContext(UserFormsContext);
 	const {
 		name,
 		username,

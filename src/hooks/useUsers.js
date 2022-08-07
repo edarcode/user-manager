@@ -18,7 +18,7 @@ export const useUsers = () => {
 		setUsers(users => ({ ...users, loading: newLoading }));
 	};
 
-	const setReUploadUsers = () => {
+	const reUploadUsers = () => {
 		setLoading(true);
 	};
 
@@ -37,6 +37,6 @@ export const useUsers = () => {
 		users: users.data,
 		err: users.err,
 		loading: users.loading,
-		setReUploadUsers
+		reUploadUsers
 	};
 };

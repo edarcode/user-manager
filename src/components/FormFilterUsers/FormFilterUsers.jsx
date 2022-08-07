@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { formTypes } from "../../constants/formTypes";
 import { optionsSort } from "../../constants/optionsSort";
 import { UserFormsContext } from "../../contexts/UserFormsContext";
 import Button from "../buttons/Button/Button";
@@ -15,7 +16,8 @@ export default function FormFilterUsers({
 	sortBy,
 	setSortBy
 }) {
-	const { setFormCreate } = useContext(UserFormsContext);
+	const { setFormCreate, currentForm } = useContext(UserFormsContext);
+	if (currentForm !== formTypes.filter) return null;
 
 	const handleOnChangeSearchUsers = e => {
 		const user = e.target.value;

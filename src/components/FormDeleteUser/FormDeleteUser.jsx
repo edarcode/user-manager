@@ -6,7 +6,11 @@ import Button from "../buttons/Button/Button";
 import css from "./style.module.css";
 
 export default function FormDeleteUser() {
-	const { user, reUploadUsers, setFormFilter } = useContext(UserFormsContext);
+	const {
+		currentUser: user,
+		reUploadUsers,
+		setFormFilter
+	} = useContext(UserFormsContext);
 	const [isDeletingUser, setIsUpdatingUser] = useState(false);
 
 	const handleOnSubmit = async e => {
