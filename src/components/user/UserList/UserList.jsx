@@ -1,6 +1,5 @@
 import { useFilters } from "../../../hooks/useFilters";
 import { useUsers } from "../../../hooks/useUsers";
-import { getUsersToDisplay } from "../../../utils/getUsersToDisplay";
 import PageSelector from "../../PageSelector/PageSelector";
 import UserFormsProvider from "../../providers/UserFormsProvider";
 import FormFilterUsers from "../../user-forms/FormFilterUsers/FormFilterUsers";
@@ -11,20 +10,9 @@ import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
 
 export default function UserList() {
-	const { users, err, loading, reUploadUsers } = useUsers();
-
-	const {
-		filters,
-		settersFilters,
-		pagination,
-		settersPaginations,
-		reStartFilters
-	} = useFilters();
-
-	const { usersToDisplay, totalPages } = getUsersToDisplay(users, {
-		...filters,
-		...pagination
-	});
+	const { filters, settersFilters, settersPaginations, reStartFilters } =
+		useFilters();
+	const { users, usersCount, err, loading, reUploadUsers } = useUsers(filters);
 
 	return (
 		<div className={css.usersList}>
@@ -34,23 +22,28 @@ export default function UserList() {
 				reUploadUsers={reUploadUsers}
 				reStartFilters={reStartFilters}
 			>
-				<FormFilterUsers {...filters} {...settersFilters} />
+				<FormFilterUsers
+					searchUsers={filters.searchUsers}
+					onlyActive={filters.onlyActive}
+					sortBy={filters.sortBy}
+					{...settersFilters}
+				/>
 				<WrapperUserForm />
 				<ViewSelector />
-				<Users users={usersToDisplay} err={err} loading={loading} />
+				<Users users={users} err={err} loading={loading} />
 			</UserFormsProvider>
 
 			<div className={css.wrapperOne}>
 				<UsersPerPage
 					className={css.perPage}
-					usersPerPage={pagination.usersPerPage}
+					usersPerPage={filters.usersPerPage}
 					setUsersPerPage={settersPaginations.setUsersPerPage}
 				/>
 
 				<PageSelector
-					page={pagination.page}
+					page={filters.page}
 					setPage={settersPaginations.setPage}
-					totalPages={totalPages}
+					totalPages={Math.ceil(usersCount / filters.usersPerPage)}
 				/>
 			</div>
 		</div>

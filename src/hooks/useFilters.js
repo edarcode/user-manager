@@ -35,13 +35,8 @@ export const useFilters = () => {
 		setFilters(initialFilters);
 	};
 	return {
-		filters: {
-			searchUsers: filters.searchUsers,
-			onlyActive: filters.onlyActive,
-			sortBy: filters.sortBy
-		},
+		filters,
 		settersFilters: { setSearchUsers, setOnlyActive, setSortBy },
-		pagination: { page: filters.page, usersPerPage: filters.usersPerPage },
 		settersPaginations: { setPage, setUsersPerPage },
 		reStartFilters
 	};
