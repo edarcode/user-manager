@@ -2,3 +2,6 @@
 	display: grid;
 	gap: 16px;
 }
+.userCards {
+	grid-template-columns: 1fr 1fr;
+}

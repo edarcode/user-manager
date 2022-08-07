@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFilters } from "../../../hooks/useFilters";
 import { useUsers } from "../../../hooks/useUsers";
 import { getUsersToDisplay } from "../../../utils/getUsersToDisplay";
@@ -27,8 +26,6 @@ export default function UserList() {
 		...pagination
 	});
 
-	const [viewSelector, setViewSelector] = useState(false);
-
 	return (
 		<div className={css.usersList}>
 			<h1 className={css.title}>Listado de usuarios</h1>
@@ -39,10 +36,7 @@ export default function UserList() {
 			>
 				<FormFilterUsers {...filters} {...settersFilters} />
 				<WrapperUserForm />
-				<ViewSelector
-					viewSelector={viewSelector}
-					setViewSelector={setViewSelector}
-				/>
+				<ViewSelector />
 				<Users users={usersToDisplay} err={err} loading={loading} />
 			</UserFormsProvider>
 

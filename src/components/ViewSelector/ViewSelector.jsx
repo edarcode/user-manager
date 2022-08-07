@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { UserFormsContext } from "../../contexts/UserFormsContext";
 import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
 import GridView from "../icons/GridView";
 import ListView from "../icons/ListView";
 import css from "./style.module.css";
 
-export default function ViewSelector({ viewSelector, setViewSelector }) {
+export default function ViewSelector() {
+	const { viewSelector, setViewSelector } = useContext(UserFormsContext);
+
 	const handleOnClickGridView = () => {
 		setViewSelector(true);
 	};

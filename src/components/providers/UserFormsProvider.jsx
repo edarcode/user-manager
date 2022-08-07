@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { UserFormsContext } from "../../contexts/UserFormsContext";
 import { useSelectForm } from "../../hooks/useSelectForm";
 
@@ -6,6 +7,7 @@ export default function UserFormsProvider({
 	reUploadUsers: uploadUsers,
 	children
 }) {
+	const [viewSelector, setViewSelector] = useState(false);
 	const { setFormFilter, ...restSelectForm } = useSelectForm();
 
 	const reUploadUsers = () => {
@@ -17,7 +19,9 @@ export default function UserFormsProvider({
 	const value = {
 		...restSelectForm,
 		setFormFilter,
-		reUploadUsers
+		reUploadUsers,
+		viewSelector,
+		setViewSelector
 	};
 	return (
 		<UserFormsContext.Provider value={value}>
