@@ -1,0 +1,26 @@
+.viewSelector {
+	margin-left: auto;
+	display: flex;
+	gap: 5px;
+}
+.line {
+	width: 2px;
+	height: 100%;
+	background-color: var(--color-black);
+}
+.btnIcon {
+	width: 30px;
+	height: 30px;
+	background-color: none;
+}
+.btnIcon svg {
+	width: 85%;
+	height: 85%;
+	color: var(--color-lightgray);
+}
+.btnIcon:disabled {
+	background-color: transparent;
+}
+.btnIcon:disabled > svg {
+	color: var(--color-black);
+}

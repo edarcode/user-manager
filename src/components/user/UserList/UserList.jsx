@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFilters } from "../../../hooks/useFilters";
 import { useUsers } from "../../../hooks/useUsers";
 import { getUsersToDisplay } from "../../../utils/getUsersToDisplay";
@@ -5,6 +6,7 @@ import PageSelector from "../../PageSelector/PageSelector";
 import UserFormsProvider from "../../providers/UserFormsProvider";
 import FormFilterUsers from "../../user-forms/FormFilterUsers/FormFilterUsers";
 import WrapperUserForm from "../../user-forms/WrapperUserForm/WrapperUserForm";
+import ViewSelector from "../../ViewSelector/ViewSelector";
 import Users from "../Users/Users";
 import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
@@ -25,6 +27,8 @@ export default function UserList() {
 		...pagination
 	});
 
+	const [viewSelector, setViewSelector] = useState(false);
+
 	return (
 		<div className={css.usersList}>
 			<h1 className={css.title}>Listado de usuarios</h1>
@@ -35,6 +39,10 @@ export default function UserList() {
 			>
 				<FormFilterUsers {...filters} {...settersFilters} />
 				<WrapperUserForm />
+				<ViewSelector
+					viewSelector={viewSelector}
+					setViewSelector={setViewSelector}
+				/>
 				<Users users={usersToDisplay} err={err} loading={loading} />
 			</UserFormsProvider>
 
