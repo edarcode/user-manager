@@ -4,14 +4,13 @@ import { useSelectForm } from "../../hooks/useSelectForm";
 
 export default function UserFormsProvider({
 	reStartFilters,
-	reUploadUsers: uploadUsers,
+
 	children
 }) {
 	const [viewSelector, setViewSelector] = useState(false);
 	const { setFormFilter, ...restSelectForm } = useSelectForm();
 
 	const reUploadUsers = () => {
-		uploadUsers();
 		setFormFilter();
 		reStartFilters();
 	};

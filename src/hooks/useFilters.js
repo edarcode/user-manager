@@ -32,7 +32,7 @@ export const useFilters = () => {
 		setFilters({ ...filters, usersPerPage: newUsersPerPage, page: 0 });
 	};
 	const reStartFilters = () => {
-		setFilters(initialFilters);
+		setFilters({ ...initialFilters });
 	};
 	return {
 		filters,

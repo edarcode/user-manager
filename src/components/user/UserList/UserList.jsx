@@ -12,16 +12,13 @@ import css from "./style.module.css";
 export default function UserList() {
 	const { filters, settersFilters, settersPaginations, reStartFilters } =
 		useFilters();
-	const { users, usersCount, err, loading, reUploadUsers } = useUsers(filters);
+	const { users, usersCount, err, loading } = useUsers(filters);
 
 	return (
 		<div className={css.usersList}>
 			<h1 className={css.title}>Listado de usuarios</h1>
 
-			<UserFormsProvider
-				reUploadUsers={reUploadUsers}
-				reStartFilters={reStartFilters}
-			>
+			<UserFormsProvider reStartFilters={reStartFilters}>
 				<FormFilterUsers
 					searchUsers={filters.searchUsers}
 					onlyActive={filters.onlyActive}
