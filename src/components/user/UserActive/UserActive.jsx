@@ -1,5 +1,5 @@
-import CheckCircle from "../icons/CheckCircle";
-import CrossCircle from "../icons/CrossCircle";
+import CheckCircle from "../../icons/CheckCircle";
+import CrossCircle from "../../icons/CrossCircle";
 import css from "./style.module.css";
 
 export default function UserActive({ active }) {

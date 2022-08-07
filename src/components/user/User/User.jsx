@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { kindButtonIcon } from "../../constants/kindButtonIcon";
-import { UserFormsContext } from "../../contexts/UserFormsContext";
-import ButtonIcon from "../buttons/ButtonIcon/ButtonIcon";
-import Pencil from "../icons/Pencil";
-import Trash from "../icons/Trash";
+import { kindButtonIcon } from "../../../constants/kindButtonIcon";
+import { UserFormsContext } from "../../../contexts/UserFormsContext";
+import ButtonIcon from "../../buttons/ButtonIcon/ButtonIcon";
+import Pencil from "../../icons/Pencil";
+import Trash from "../../icons/Trash";
 import UserActive from "../UserActive/UserActive";
 import UserDisplay from "../UserDisplay/UserDisplay";
 import UserRole from "../UserRole/UserRole";

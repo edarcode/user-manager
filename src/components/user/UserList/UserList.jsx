@@ -1,15 +1,12 @@
-import { useFilters } from "../../hooks/useFilters";
-import { useUsers } from "../../hooks/useUsers";
-import { getUsersToDisplay } from "../../utils/getUsersToDisplay";
-
-import PageSelector from "../PageSelector/PageSelector";
-import UserFormsProvider from "../providers/UserFormsProvider";
-import Title from "../Title/Title";
-import FormFilterUsers from "../user-forms/FormFilterUsers/FormFilterUsers";
-import WrapperUserForm from "../user-forms/WrapperUserForm/WrapperUserForm";
+import { useFilters } from "../../../hooks/useFilters";
+import { useUsers } from "../../../hooks/useUsers";
+import { getUsersToDisplay } from "../../../utils/getUsersToDisplay";
+import PageSelector from "../../PageSelector/PageSelector";
+import UserFormsProvider from "../../providers/UserFormsProvider";
+import FormFilterUsers from "../../user-forms/FormFilterUsers/FormFilterUsers";
+import WrapperUserForm from "../../user-forms/WrapperUserForm/WrapperUserForm";
 import Users from "../Users/Users";
 import UsersPerPage from "../UsersPerPage/UsersPerPage";
-
 import css from "./style.module.css";
 
 export default function UserList() {
@@ -30,7 +27,7 @@ export default function UserList() {
 
 	return (
 		<div className={css.usersList}>
-			<Title>Listado de usuarios</Title>
+			<h1 className={css.title}>Listado de usuarios</h1>
 
 			<UserFormsProvider
 				reUploadUsers={reUploadUsers}

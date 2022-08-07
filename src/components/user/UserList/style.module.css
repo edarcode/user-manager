@@ -3,6 +3,13 @@
 	gap: 50px;
 	width: 750px;
 }
+.title {
+	font-weight: 700;
+	font-size: 3.2rem;
+	text-align: center;
+	margin-bottom: 30px;
+	line-height: 48px;
+}
 .wrapperOne {
 	display: grid;
 	grid-auto-flow: column;

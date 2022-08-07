@@ -1,4 +1,4 @@
-import { allRoles } from "../../constants/allRoles";
+import { allRoles } from "../../../constants/allRoles";
 import css from "./style.module.css";
 
 export default function UserRole({ role, className }) {
