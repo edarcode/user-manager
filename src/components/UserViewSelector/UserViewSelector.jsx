@@ -6,13 +6,13 @@ import ListView from "../icons/ListView";
 import css from "./style.module.css";
 
 export default function ViewSelector() {
-	const { viewSelector, setViewSelector } = useContext(UserFormsContext);
+	const { userCardFormat, setUserCardFormat } = useContext(UserFormsContext);
 
 	const handleOnClickGridView = () => {
-		setViewSelector(true);
+		setUserCardFormat(true);
 	};
 	const handleOnClickListView = () => {
-		setViewSelector(false);
+		setUserCardFormat(false);
 	};
 	return (
 		<div className={css.viewSelector}>
@@ -20,14 +20,14 @@ export default function ViewSelector() {
 				icon={GridView}
 				className={css.btnIcon}
 				onClick={handleOnClickGridView}
-				disabled={viewSelector}
+				disabled={userCardFormat}
 			/>
 			<span className={css.line}></span>
 			<ButtonIcon
 				icon={ListView}
 				className={css.btnIcon}
 				onClick={handleOnClickListView}
-				disabled={!viewSelector}
+				disabled={!userCardFormat}
 			/>
 		</div>
 	);

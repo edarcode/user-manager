@@ -4,7 +4,7 @@ import PageSelector from "../../PageSelector/PageSelector";
 import UserFormsProvider from "../../providers/UserFormsProvider";
 import FormFilterUsers from "../../user-forms/FormFilterUsers/FormFilterUsers";
 import WrapperUserForm from "../../user-forms/WrapperUserForm/WrapperUserForm";
-import ViewSelector from "../../ViewSelector/ViewSelector";
+import UserViewSelector from "../../UserViewSelector/UserViewSelector";
 import Users from "../Users/Users";
 import UsersPerPage from "../UsersPerPage/UsersPerPage";
 import css from "./style.module.css";
@@ -26,7 +26,7 @@ export default function UserList() {
 					{...settersFilters}
 				/>
 				<WrapperUserForm />
-				<ViewSelector />
+				<UserViewSelector />
 				<Users users={users} err={err} loading={loading} />
 			</UserFormsProvider>
 

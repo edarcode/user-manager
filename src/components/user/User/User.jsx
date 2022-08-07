@@ -10,7 +10,7 @@ import UserRole from "../UserRole/UserRole";
 import css from "./style.module.css";
 
 export default function User({ id, name, username, active, role }) {
-	const { setFormEdit, setFormDelete, viewSelector } =
+	const { setFormEdit, setFormDelete, userCardFormat } =
 		useContext(UserFormsContext);
 
 	const handleOnClickFormEdit = () => {
@@ -20,7 +20,7 @@ export default function User({ id, name, username, active, role }) {
 		setFormDelete({ id, name });
 	};
 	return (
-		<div className={!viewSelector ? css.user : `${css.user} ${css.userCard}`}>
+		<div className={!userCardFormat ? css.user : `${css.user} ${css.userCard}`}>
 			<UserDisplay
 				name={name}
 				username={username}

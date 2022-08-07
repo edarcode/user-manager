@@ -7,7 +7,7 @@ export default function UserFormsProvider({
 
 	children
 }) {
-	const [viewSelector, setViewSelector] = useState(false);
+	const [userCardFormat, setUserCardFormat] = useState(false);
 	const { setFormFilter, ...restSelectForm } = useSelectForm();
 
 	const reUploadUsers = () => {
@@ -19,8 +19,8 @@ export default function UserFormsProvider({
 		...restSelectForm,
 		setFormFilter,
 		reUploadUsers,
-		viewSelector,
-		setViewSelector
+		userCardFormat,
+		setUserCardFormat
 	};
 	return (
 		<UserFormsContext.Provider value={value}>
