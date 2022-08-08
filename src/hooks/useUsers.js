@@ -10,20 +10,21 @@ export const useUsers = filters => {
 	});
 
 	const setData = (newData, newCount) => {
-		setUsers(users => ({ ...users, data: newData, count: newCount }));
+		setUsers(users => ({
+			...users,
+			data: newData,
+			count: newCount,
+			loading: false
+		}));
 	};
 	const setErr = newErr => {
 		setUsers(users => ({ ...users, err: newErr, count: 0 }));
-	};
-	const setLoading = newLoading => {
-		setUsers(users => ({ ...users, loading: newLoading }));
 	};
 
 	useEffect(() => {
 		const controller = new AbortController();
 		let timeoutId = null;
 		const paramsHandleFetchUsers = {
-			setLoading,
 			setData,
 			setErr,
 			filters,
@@ -53,16 +54,8 @@ export const useUsers = filters => {
 	};
 };
 
-const handleFetchUsers = ({
-	setLoading,
-	setData,
-	setErr,
-	filters,
-	controller
-}) => {
-	setLoading(true);
+const handleFetchUsers = ({ setData, setErr, filters, controller }) => {
 	fetchUsers(controller.signal, filters)
 		.then(({ users, count }) => setData(users, count))
-		.catch(() => setErr(true))
-		.finally(() => setLoading(false));
+		.catch(() => setErr(true));
 };
